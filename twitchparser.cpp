@@ -1,6 +1,8 @@
 #include <string>
 #include <fstream>
+#include <iostream>
 #include <map>
+#include <ctime>
 typedef std::map<std::string, int> emojis;
 typedef std::map<std::string, emojis > users;
 //todo
@@ -14,18 +16,36 @@ main(int argc, char *argv[])
   outfilename.append("_output.txt");
   std::ofstream outfile(outfilename.c_str());
   std::string line;
+  std::tm last_date = {};
+  bool first_run = false;
   while (std::getline(infile, line))
   {
-      //if beginning is Session Start or Session Time
+    //if date declaration
+    if (line.substr(0,12)=="Session Time" || line.substr(0,13) == "Session Start")
+    {
+        std::tm date = {};
+        std::string temp_date;
+        if (line.substr(13,1) == ":"){
+          temp_date = line.substr(14,10);
+          std::cout << temp_date << std::endl;
+        }
+        else {
+          temp_date = line.substr(13,10);
+        }
+        strptime(temp_date, "%a %b %d", &date);
         //if first time.
+        if (first_run){
           //record time
           //Set last date to current
+          first_run = false;
+        }
         //if different from last date
           //record the map
           //fill in any missing inbetween dates for data clarity
           //start new date in different
           //update last date to new date
-      //else
+              }
+      else {
         //if beginning is [ and ] < afterwards
           //if user in map
             //if emojii in map
@@ -37,6 +57,7 @@ main(int argc, char *argv[])
             //set user to emojii map
         //else
           //error?
+        }
   }
 
   infile.close();
