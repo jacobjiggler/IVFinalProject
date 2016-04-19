@@ -6,6 +6,8 @@
 typedef std::map<std::string, int> emojis;
 typedef std::map<std::string, emojis > users;
 //todo
+ADD TOTALS AT END
+SWITCH TO other BUbble enclosure visualization
 //1)implement commented pseudocode
 //2)change to output to working json
 //3)change to work by hour instead
