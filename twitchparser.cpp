@@ -17,7 +17,6 @@ typedef std::map<std::string, twitch_emojis > twitch_users;
 //3)change to work by hour instead
 
 void record(twitch_users &users, twitch_emojis &totals, std::ofstream& outfile){
-
   for(twitch_users::iterator it_users = users.begin(); it_users != users.end(); it_users++) {
     std::string temp_user = "user: " + it_users->first + "\n";
     //if user used any emojis
@@ -74,7 +73,7 @@ main(int argc, char *argv[])
     std::string totalfilename = "total_";
     outfilename.append("_output.txt");
     totalfilename.append(outfilename);
-    totalfilename.insert(0,"output/");
+    totalfilename.insert(0,"total/");
     outfilename.insert(0,"output/");
     std::ofstream outfile;
     outfile.open(outfilename.c_str());
@@ -83,6 +82,7 @@ main(int argc, char *argv[])
     std::tm  last_date;
     twitch_users users;
     bool first_run = true;
+    int count = 0;
     while (std::getline(infile, line))
     {
         //if date declaration
@@ -96,7 +96,6 @@ main(int argc, char *argv[])
             else {
                 temp_date = line.substr(14,24);
             }
-            std::cout<<temp_date <<std::endl;
             if (strptime(temp_date.c_str(), "%a %b %d %H:%M:%S %Y", &date)==NULL)
                 std::cout << "error" << std::endl;
 
@@ -174,7 +173,7 @@ main(int argc, char *argv[])
 
                               //increment
                               it->second++;
-                              std::cout<< it->second << std::endl;
+                              //std::cout<< it->second << std::endl;
                           }
                           else
                           {
