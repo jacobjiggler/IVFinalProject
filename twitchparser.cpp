@@ -5,19 +5,51 @@
 #include <ctime>
 #include <sstream>
 #include <algorithm>
+
 typedef std::map<std::string, int> twitch_emojis;
 typedef std::map<std::string, twitch_emojis > twitch_users;
 
 //ADD TOTALS AT END
 //SWITCH TO other BUbble enclosure visualization
 
-//1)implement commented pseudocode
+//1)split code into sub functions to make things clear
 //2)change to output to working json
 //3)change to work by hour instead
+
+void record(twitch_users &users, twitch_emojis &totals, std::ofstream& outfile){
+
+  for(twitch_users::iterator it_users = users.begin(); it_users != users.end(); it_users++) {
+    std::string temp_user = "user: " + it_users->first + "\n";
+    //if user used any emojis
+    if (it_users->second.size() > 0)
+      outfile<<temp_user;
+    for(twitch_emojis::iterator it_emojis = it_users->second.begin(); it_emojis != it_users->second.end(); it_emojis++) {
+      std::stringstream ss;
+      ss << it_emojis->first <<  " " << it_emojis->second  << "\n";
+      std::string temp_emoji = ss.str();
+      outfile << temp_emoji;
+      //if not in totals
+      if (totals.find(it_emojis->first)==totals.end()){
+        totals[it_emojis->first] = it_emojis->second;
+      }
+      else {
+        totals[it_emojis->first]+=it_emojis->second;
+      }
+    }
+    it_users->second.clear();
+
+  }
+  users.clear();
+
+
+}
+
+
 main(int argc, char *argv[])
 {
     //load in master set of emojis
     std::map<std::string,std::string> master_set;
+    twitch_emojis totals;
     std::ifstream master_file("emoji_representations.txt");
     std::string line;
     while (std::getline(master_file, line))
@@ -32,10 +64,15 @@ main(int argc, char *argv[])
     master_file.close();
     std::ifstream infile(argv[1]);
     std::string outfilename = argv[1];
+    std::string totalfilename = "total_";
     outfilename.append("_output.txt");
+    totalfilename.append(outfilename);
+    totalfilename.insert(0,"output/");
     outfilename.insert(0,"output/");
     std::ofstream outfile;
     outfile.open(outfilename.c_str());
+    std::ofstream totaloutfile;
+    totaloutfile.open(totalfilename.c_str());
     std::tm * last_date;
     twitch_users users;
     bool first_run = true;
@@ -74,20 +111,34 @@ main(int argc, char *argv[])
                 first_run = false;
                 continue;
             }
+
+            std::cout << "yo " << (&date == last_date) << std::endl;
+
             //if different from last date
             if ( date.tm_mday != last_date->tm_mday || date.tm_mon != last_date->tm_mon || date.tm_year != last_date->tm_year)
             {
-                //record the map(split into own function)
+                //record the map
+                record(users,totals, outfile);
 
-                //add to totals
-                //iterate through calling clear on sub maps
-                // call clear on users
 
                 //fill in any missing inbetween dates for data clarity
                 //add 1 to tm_mday of last_date and write until on new day
+                last_date->tm_mday+=1;
+                while(date.tm_mday != last_date->tm_mday || date.tm_mon != last_date->tm_mon)
+                {
+                  char buffer [80];
+                  if (strftime (buffer,80,"Time: %a %b %d 00:00:00 %Y\n",last_date)<=0)
+                      std::cout << "strf Error" << std::endl;
+                  outfile<<buffer;
+                  last_date->tm_mday +=1;
+
+              }
                 //start new date in different
                 //delete old date
+                delete last_date;
                 //update last date to new date
+                last_date = &date;
+
             }
         }
         else {
@@ -128,7 +179,6 @@ main(int argc, char *argv[])
                 else {
                     //create new emoji map
                     twitch_emojis emojis;
-
                     //set user to map
                     users[user] = emojis;
                     //for every word in message
@@ -162,7 +212,10 @@ main(int argc, char *argv[])
             }
         }
     }
+    //record one last time because it might not have been called earlier
+    record(users,totals, outfile);
     //delete last_date;
+    //record totals
     infile.close();
     outfile.close();
     return 0;
