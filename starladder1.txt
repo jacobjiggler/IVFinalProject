@@ -40,6 +40,7 @@ Session Time: Sat Mar 19 00:00:00 2016
 02[15:36] * Attempting to rejoin channel #starladder1
 03[15:36] * Rejoined channel #starladder1
 Session Time: Sun Mar 20 00:00:00 2016
+[13:37] <enivebdio1988> cometome.gq Kappa
 Session Time: Mon Mar 21 00:00:00 2016
 Session Time: Tue Mar 22 00:00:00 2016
 02[02:26] * Disconnected

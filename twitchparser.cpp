@@ -9,45 +9,56 @@
 typedef std::map<std::string, int> twitch_emojis;
 typedef std::map<std::string, twitch_emojis > twitch_users;
 
-//ADD TOTALS AT END
-//SWITCH TO other BUbble enclosure visualization
 
-//1)split code into sub functions to make things clear
-//2)change to output to working json
-//3)change to work by hour instead
+//possibly change to work by hour instead
 
-void record(twitch_users &users, twitch_emojis &totals, std::ofstream& outfile){
+void record(twitch_users &users, twitch_users &user_totals, std::ofstream& outfile){
   for(twitch_users::iterator it_users = users.begin(); it_users != users.end(); it_users++) {
     std::string temp_user = "user: " + it_users->first + "\n";
     //if user used any emojis
     if (it_users->second.size() > 0)
+    {
       outfile<<temp_user;
-    for(twitch_emojis::iterator it_emojis = it_users->second.begin(); it_emojis != it_users->second.end(); it_emojis++) {
-      std::stringstream ss;
-      ss << it_emojis->first <<  " " << it_emojis->second  << "\n";
-      std::string temp_emoji = ss.str();
-      outfile << temp_emoji;
-      //if not in totals
-      if (totals.find(it_emojis->first)==totals.end()){
-        totals[it_emojis->first] = it_emojis->second;
-      }
-      else {
-        totals[it_emojis->first]+=it_emojis->second;
-      }
-    }
-    it_users->second.clear();
 
+      //if not in  user_totals
+      twitch_emojis* totals;
+      if (user_totals.find(it_users->first) == user_totals.end()){
+        twitch_emojis emojis;
+        user_totals[it_users->first] = emojis;
+      }
+      totals = &user_totals[it_users->first];
+
+      for(twitch_emojis::iterator it_emojis = it_users->second.begin(); it_emojis != it_users->second.end(); it_emojis++) {
+        std::stringstream ss;
+        ss << it_emojis->first <<  " " << it_emojis->second  << "\n";
+        std::string temp_emoji = ss.str();
+        outfile << temp_emoji;
+        //if not in totals
+        if (totals->find(it_emojis->first)==totals->end()){
+          (*totals)[it_emojis->first] = it_emojis->second;
+        }
+        else {
+          (*totals)[it_emojis->first]+=it_emojis->second;
+        }
+      }
+      it_users->second.clear();
+    }
   }
   users.clear();
 
 
 }
-void recordtotals(twitch_emojis &totals, std::ofstream& totaloutfile){
-  for(twitch_emojis::iterator it_emojis = totals.begin(); it_emojis != totals.end(); it_emojis++) {
-    std::stringstream ss;
-    ss << it_emojis->first <<  " " << it_emojis->second  << "\n";
-    std::string temp_emoji = ss.str();
-    totaloutfile << temp_emoji;
+void recordtotals(twitch_users &user_totals, std::ofstream& totaloutfile){
+  for(twitch_users::iterator it_users = user_totals.begin(); it_users != user_totals.end(); it_users++) {
+    //print user
+    std::string temp_user = "user: " + it_users->first + "\n";
+    totaloutfile<<temp_user;
+    for(twitch_emojis::iterator it_emojis = it_users->second.begin(); it_emojis != it_users->second.end(); it_emojis++) {
+      std::stringstream ss;
+      ss << it_emojis->first <<  " " << it_emojis->second  << "\n";
+      std::string temp_emoji = ss.str();
+      totaloutfile << temp_emoji;
+    }
   }
 }
 
@@ -55,7 +66,7 @@ main(int argc, char *argv[])
 {
     //load in master set of emojis
     std::map<std::string,std::string> master_set;
-    twitch_emojis totals;
+    twitch_users totals;
     std::ifstream master_file("emoji_representations.txt");
     std::string line;
     while (std::getline(master_file, line))
