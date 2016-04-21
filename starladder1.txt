@@ -18,7 +18,6 @@ Session Time: Wed Mar 09 00:00:00 2016
 02[08:35] * Disconnected
 Session Time: Thu Mar 10 00:00:00 2016
 Session Time: Fri Mar 11 00:00:00 2016
-
 Session Start: Sun Mar 13 01:36:04 2016
 Session Ident: #starladder1
 03[01:36] * Now talking in #starladder1

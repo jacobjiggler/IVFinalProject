@@ -43,7 +43,14 @@ void record(twitch_users &users, twitch_emojis &totals, std::ofstream& outfile){
 
 
 }
-
+void recordtotals(twitch_emojis &totals, std::ofstream& totaloutfile){
+  for(twitch_emojis::iterator it_emojis = totals.begin(); it_emojis != totals.end(); it_emojis++) {
+    std::stringstream ss;
+    ss << it_emojis->first <<  " " << it_emojis->second  << "\n";
+    std::string temp_emoji = ss.str();
+    totaloutfile << temp_emoji;
+  }
+}
 
 main(int argc, char *argv[])
 {
@@ -73,7 +80,7 @@ main(int argc, char *argv[])
     outfile.open(outfilename.c_str());
     std::ofstream totaloutfile;
     totaloutfile.open(totalfilename.c_str());
-    std::tm * last_date;
+    std::tm  last_date;
     twitch_users users;
     bool first_run = true;
     while (std::getline(infile, line))
@@ -107,37 +114,39 @@ main(int argc, char *argv[])
                     std::cout << "strp error" << std::endl;
                 outfile<<buffer;
                 //Set last date to current
-                last_date = &date;
+                last_date = date;
                 first_run = false;
                 continue;
             }
 
-            std::cout << "yo " << (&date == last_date) << std::endl;
 
             //if different from last date
-            if ( date.tm_mday != last_date->tm_mday || date.tm_mon != last_date->tm_mon || date.tm_year != last_date->tm_year)
+            if ( date.tm_mday != last_date.tm_mday || date.tm_mon != last_date.tm_mon || date.tm_year != last_date.tm_year)
             {
+
                 //record the map
                 record(users,totals, outfile);
 
 
                 //fill in any missing inbetween dates for data clarity
                 //add 1 to tm_mday of last_date and write until on new day
-                last_date->tm_mday+=1;
-                while(date.tm_mday != last_date->tm_mday || date.tm_mon != last_date->tm_mon)
+                last_date.tm_mday +=1;
+
+                while(date.tm_mday != last_date.tm_mday || date.tm_mon != last_date.tm_mon || date.tm_year != last_date.tm_year)
                 {
                   char buffer [80];
-                  if (strftime (buffer,80,"Time: %a %b %d 00:00:00 %Y\n",last_date)<=0)
+                  if (strftime (buffer,80,"Time: %a %b %d 00:00:00 %Y\n",&last_date)<=0)
                       std::cout << "strf Error" << std::endl;
                   outfile<<buffer;
-                  last_date->tm_mday +=1;
-
+                  last_date.tm_mday +=1;
               }
-                //start new date in different
-                //delete old date
-                delete last_date;
+              //print new date
+              char buffer [80];
+              if (strftime (buffer,80,"Time: %a %b %d 00:00:00 %Y\n",&date)<=0)
+                  std::cout << "strf Error" << std::endl;
+              outfile<<buffer;
                 //update last date to new date
-                last_date = &date;
+                last_date = date;
 
             }
         }
@@ -216,6 +225,7 @@ main(int argc, char *argv[])
     record(users,totals, outfile);
     //delete last_date;
     //record totals
+    recordtotals(totals,totaloutfile);
     infile.close();
     outfile.close();
     return 0;
