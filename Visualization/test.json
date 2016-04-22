@@ -1,0 +1,23 @@
+{
+ "name": "Twitch",
+ "children": [
+{
+"name": "starladder1",
+ "children": [
+{
+"name": "enivebdio1988",
+"children": [
+{"name": "kappa", "size": 2},
+{"name": "kreygasm", "size": 2}
+]
+},
+{
+"name": "test",
+"children": [
+{"name": "kappa", "size": 1}
+]
+}
+]
+}
+]
+}

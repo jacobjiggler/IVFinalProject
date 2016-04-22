@@ -16,7 +16,7 @@ if __name__ == '__main__':
     jsonfile.write('{\n "name": "Twitch",\n "children": [\n');
     #for all files in totals folder
     for file in os.listdir("total/"):
-        if file.endswith("der1.txt"):
+        if file.endswith(".txt"):
             index = file.find(".txt")
             file = file[:index]
             #write streamer header
@@ -29,10 +29,10 @@ if __name__ == '__main__':
                     if line[0:5] == "user:":
                         #if not first time
                         if (current_user != ""):
-                            #print user ending
+                            #write user ending
                             jsonfile.write('\n]\n},\n')
                             a = 1
-                        #print user beginning
+                        #write user beginning
                         user = line[6:-1]
                         jsonfile.write('{\n"name": "' + user + '",\n"children": [\n');
                         #set current user
@@ -45,14 +45,13 @@ if __name__ == '__main__':
                         emoji = line[:index]
                         count = line[index+1:-1]
                         if first_emoji:
-                            #print without comma on previous line
+                            #write without comma on previous line
                             jsonfile.write('{"name": "' + emoji + '", "size": ' + count + '}');
                             first_emoji = False
                         else:
-                            #print with comma on previous line
-                            print emoji
+                            #write with comma on previous line
                             jsonfile.write(',\n{"name": "' + emoji + '", "size": ' + count + '}');
-            #print user ending without comma
+            #write user ending without comma
             jsonfile.write('\n]\n}')
             #write streamer ending with comma
             jsonfile.write('\n]\n},\n')
