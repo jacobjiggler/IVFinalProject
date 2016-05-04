@@ -8,13 +8,12 @@ import os
 
 if __name__ == '__main__':
     #write header of twitch
-    jsonfile = open('/Visualization/json_input/all_data.json', 'w')
-    jsonfile.write('{\n "name": "Twitch",\n "children": [\n');
     #for all files in totals folder
     for file in os.listdir("total/"):
         if file.endswith(".txt"):
             index = file.find(".txt")
             file = file[:index]
+            jsonfile = open('Visualization/json_input' + file + '.json', 'w')
             #write streamer header
             jsonfile.write('{\n"name": "' + file + '",\n "children": [\n');
             current_user = ""
@@ -52,5 +51,6 @@ if __name__ == '__main__':
             #write streamer ending with comma
             jsonfile.write('\n]\n},\n')
     #write ending and get rid of extra comma
-    jsonfile.seek(-2,1)
-    jsonfile.write('\n]\n}');
+            print(file)
+            jsonfile.seek(-2,1)
+            jsonfile.write('\n\n');

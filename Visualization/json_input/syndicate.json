@@ -1,0 +1,104 @@
+{
+"name": "syndicate",
+ "children": [
+{
+"name": "achaser04",
+"children": [
+{"name": "sad", "size": 1}
+]
+},
+{
+"name": "alanhou3",
+"children": [
+{"name": "mvgame", "size": 3}
+]
+},
+{
+"name": "amjawesome",
+"children": [
+{"name": "bored", "size": 1},
+{"name": "sad", "size": 1}
+]
+},
+{
+"name": "arnavp2000",
+"children": [
+{"name": "mrdestructoid", "size": 1}
+]
+},
+{
+"name": "cluckyplays",
+"children": [
+{"name": "asianglow", "size": 1},
+{"name": "kappapride", "size": 1},
+{"name": "keepo", "size": 1},
+{"name": "pjsalt", "size": 2},
+{"name": "punchtrees", "size": 1},
+{"name": "ssssss", "size": 1},
+{"name": "strawbeary", "size": 1}
+]
+},
+{
+"name": "deltaone97",
+"children": [
+{"name": "ssssss", "size": 1}
+]
+},
+{
+"name": "i__watch__twitch",
+"children": [
+{"name": "sad", "size": 1}
+]
+},
+{
+"name": "joshkkkkkk",
+"children": [
+{"name": "smile", "size": 1}
+]
+},
+{
+"name": "parakella",
+"children": [
+{"name": "pjsalt", "size": 1}
+]
+},
+{
+"name": "petegtaplayer",
+"children": [
+{"name": "kappa", "size": 1}
+]
+},
+{
+"name": "sunsetplazadr2143",
+"children": [
+{"name": "winking", "size": 1}
+]
+},
+{
+"name": "synuix",
+"children": [
+{"name": "panicvis", "size": 1}
+]
+},
+{
+"name": "thunderstorm1223",
+"children": [
+{"name": "heart", "size": 3}
+]
+},
+{
+"name": "toraq",
+"children": [
+{"name": "jkanstyle", "size": 1}
+]
+},
+{
+"name": "xanbot",
+"children": [
+{"name": "heart", "size": 3},
+{"name": "smile", "size": 13}
+]
+}
+]
+}
+
