@@ -172,7 +172,7 @@ d3.json("emoji_list.json", function(error, root) {
 		.attr("height", 1)
 		.attr("fill", "white");
 	pattern.append("svg:image")
-		.attr("xlink:xlink:href", function(d) { return d.children ? "" : "/twitch_emojis/" + d.name + ".png"; })
+		.attr("xlink:xlink:href", function(d) { return d.children ? "" : "twitch_emojis/" + d.name + ".png"; })
 		.attr("height", 1)
 		.attr("width", 1)
 		.attr("preserveAspectRatio", "xMidYMid meet")
@@ -261,8 +261,17 @@ var total_table_body = d3.select("#total-table tbody");
 
 function update_table(focus)
 {
-	//var rows = total_table_body.selectAll("tr")
-		//.data(data)
+	/*var focus_data = user_totals[focus.name];
+	if (focus_data == undefined)
+		focus_data = totals;
+
+	var rows = total_table_body.selectAll("tr")
+		.data(focus_data);
+		
+	rows.enter()
+		.append("tr");
+		
+	rows.order();*/
 }
 
 //d3.select(self.frameElement).style("height", diameter + "px");
