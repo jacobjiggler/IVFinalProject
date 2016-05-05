@@ -1,6 +1,21 @@
 <!DOCTYPE html>
+<head>
 <meta charset="utf-8">
 <style>
+
+html {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	width: 100%;
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
+}
 
 .node {
   cursor: pointer;
@@ -26,25 +41,98 @@
 .node--leaf {
   pointer-events: none;
 }
-.box {
-    max-width: 820px;
-    position: relative;
-    display: block;
-    margin: 0 auto;
-    padding: 0 10px;
-}
-</style>
-<body>
 
-  <div class=box>
-    <h1>
-    Temporal emoji utilization across communities<br>
-  </h1>
-    <div class="visualization">
-    </div>
-  </div>
+.vis-table {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	overflow: auto;
+}
+
+.vis-column-left {
+	position:absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 33%;
+	width: 67%;
+	margin: 0;
+}
+
+.vis-column-right {
+	position:absolute;
+	left: 67%;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	width: 33%;
+	margin: 0;
+}
+
+.vis-row-top {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 50%;
+}
+
+.vis-row-bottom {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 50%;
+	bottom: 0;
+}
+
+.svg-container {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+	width: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+	bottom: 0;
+	right: 0;
+}
+
+</style>
+</head>
+<body>
+<div class="vis-table">
+	<div id="visualization" class="vis-column-left">
+	</div>
+	<div class="vis-column-right">
+		<div class="vis-row-top">
+		<h2>Total Emoji Count</h2>
+		<table id="total-table">
+			<thead>
+				<td> </td>
+				<td>Text</td>
+				<td>Frequency</td>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+		</div>
+		<div class="vis-row-bottom time-chart">
+		<h2>Emoji Use Over Time</h2>
+		</div>
+	</div>
+</div>
 <script src="d3.v3.min.js"></script>
 <script>
+
+var totals = {};
+var user_totals = {};
 
 var margin = 15,
     diameter = 820;
@@ -59,15 +147,64 @@ var pack = d3.layout.pack()
     .size([diameter - margin, diameter - margin])
     .value(function(d) { return d.size; })
 
-var svg = d3.select(".visualization").append("svg")
-    .attr("width", diameter)
-    .attr("height", diameter)
+var svg = d3.select("#visualization").append("svg")
+    //responsive SVG needs these 2 attributes and no width and height attr
+   .attr("preserveAspectRatio", "xMidYMid meet")
+   .attr("viewBox", "0 0 820 820")
+   //class to make it responsive
+   .classed("svg-container", true)
   .append("g")
-    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
+    .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
+	.classed("svg-content-responsive", true);
 
+d3.json("emoji_list.json", function(error, root) {
+	if (error) throw error;
+	
+	var pattern = svg.selectAll("defs").data(root).enter()
+	.append("defs")
+		.append("pattern")
+			.attr("id", function(d) { return "id-img-" + d.name; })
+			.attr("width", 1)
+			.attr("height", 1)
+			.attr("patternContentUnits", "objectBoundingBox");
+	pattern.append("svg:rect")
+		.attr("width", 1)
+		.attr("height", 1)
+		.attr("fill", "white");
+	pattern.append("svg:image")
+		.attr("xlink:xlink:href", function(d) { return d.children ? "" : "/twitch_emojis/" + d.name + ".png"; })
+		.attr("height", 1)
+		.attr("width", 1)
+		.attr("preserveAspectRatio", "xMidYMid meet")
+		.style("image-rendering", "pixelated");
+});
+	
 d3.json("json_input/syndicate.json", function(error, root) {
   if (error) throw error;
 
+  for (var i = 0; i < root.children.length; i++)
+	{
+		var user = root.children[i];
+		var cur_user_total = {};
+		
+		for (var emoji_ind in user.children)
+		{
+			var emoji = user.children[emoji_ind];
+			
+			cur_user_total[emoji.name] = emoji.size;
+			
+			if (totals[emoji.name] != undefined)
+				totals[emoji.name] += emoji.size;
+			else
+				totals[emoji.name] = emoji.size;
+		}
+		
+		user_totals[user.name] = cur_user_total;
+	}
+	
+	//console.log(totals);
+	
+  
   var focus = root,
       nodes = pack.nodes(root),
       view;
@@ -76,9 +213,9 @@ d3.json("json_input/syndicate.json", function(error, root) {
       .data(nodes)
     .enter().append("circle")
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-      .style("fill", function(d) { return d.children ? color(d.depth) : null; })
+      .style("fill", function(d) { return d.children ? color(d.depth) : "url(#id-img-" + d.name + ")"; })
       .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
-
+	    
   var text = svg.selectAll("text")
       .data(nodes)
     .enter().append("text")
@@ -89,7 +226,7 @@ d3.json("json_input/syndicate.json", function(error, root) {
 
   var node = svg.selectAll("circle,text");
 
-  d3.select(".visualization")
+  d3.select("#visualization")
       .style("background", color(-1))
       .on("click", function() { zoom(root); });
 
@@ -97,9 +234,10 @@ d3.json("json_input/syndicate.json", function(error, root) {
 
   function zoom(d) {
     var focus0 = focus; focus = d;
+	console.log(focus);
 
     var transition = d3.transition()
-        .duration(d3.event.altKey ? 7500 : 750)
+        .duration(750)
         .tween("zoom", function(d) {
           var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2 + margin]);
           return function(t) { zoomTo(i(t)); };
@@ -119,6 +257,15 @@ d3.json("json_input/syndicate.json", function(error, root) {
   }
 });
 
-d3.select(self.frameElement).style("height", diameter + "px");
+var total_table_body = d3.select("#total-table tbody");
+
+function update_table(focus)
+{
+	//var rows = total_table_body.selectAll("tr")
+		//.data(data)
+}
+
+//d3.select(self.frameElement).style("height", diameter + "px");
 
 </script>
+</body>
