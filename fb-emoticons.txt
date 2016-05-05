@@ -1,0 +1,457 @@
+Smile,:),:],=),:-)
+Frown,:(,:[,=(,:-(
+Tongue,:p,:P,=P,:-p,:-P
+Grin,:D,=D,:-D
+Gasp,:o,:O,:-o,:-O
+Wink,;),;-)
+Glasses,8-) B-)
+Sunglasses,8| B|,8-| B-|
+Grumpy,>:(,>:-(
+Unsure,:/,:\,:-/,:-\
+Cry,:'(
+Devil,3:),3:-)
+Angel O:) O:-)
+Kiss,:*,:-*
+Kiki,^_^
+Squint,-_-
+Confused o.O,O.o
+Upset,>:o,>:O,>:-O,>:-o
+Pacman,:v
+Curly lips,:3
+Heart,<3
+Robot,:|]
+Penguin,<(")
+Putnam,:putnam:
+Shark,(^^^)
+Like,(y),(Y)
+Poop,:poop:
+Sun with rays,☀
+Cloud,☁
+Umbrella with rain drops,☔
+Snowman,⛄
+High voltage sign,⚡
+Cyclone,🌀
+Closed umbrella,🌂
+Starry night,🌃
+Sunrise over mountains,🌄
+Sunrise,🌅
+Cityscape at dusk,🌆
+Sunset over buildings,🌇
+Rainbow,🌈
+Water wave,🌊
+Crescent moon,🌙
+Glowing star,🌟
+Four leaf clover,🍀
+Tulip,🌷
+Seedling,🌱
+Maple leaf,🍁
+Cherry blossom,🌸
+Rose,🌹
+Fallen leaf,🍂
+Leaf fluttering in wind,🍃
+Hibiscus,🌺
+Sunflower,🌻
+Palm tree,🌴
+Cactus,🌵
+Ear of rice,🌾
+Red apple,🍎
+Tangerine,🍊
+Strawberry,🍓
+Watermelon,🍉
+Tomato,🍅
+Eggplant,🍆
+Eyes,👀
+Ear,👂
+Nose,👃
+Mouth,👄
+Lipstick,💄
+Nail polish,💅
+Barber pole,💈
+Boy,👦
+Girl,👧
+Man,👨
+Woman,👩
+Man and woman holding hands,👫
+Police officer,👮
+Woman with bunny ears,👯
+Person with blond hair,👱
+Man with gua pi mao,👲
+Man with turban,👳
+Older man,👴
+Older woman,👵
+Baby,👶
+Construction worker,👷
+Princess,👸
+Ghost,👻
+Baby angel,👼
+Extraterrestrial alien,👽
+Alien monster,👾
+Imp,👿
+Skull,💀
+Guardsman,💂
+Dancer,💃
+Snake,🐍
+Horse,🐎
+Chicken,🐔
+Boar,🐗
+Bactrian camel,🐫
+Elephant,🐘
+Koala,🐨
+Monkey,🐒
+Sheep,🐑
+Octopus,🐙
+Spiral shell,🐚
+Bug,🐛
+Tropical fish,🐠
+Blowfish,🐡
+Baby chick,🐥
+Bird,🐦
+Penguin,🐧
+Poodle,🐩
+Fish,🐟
+Dolphin,🐬
+Mouse face,🐭
+Tiger face,🐯
+Cat face,🐱
+Spouting whale,🐳
+Horse face,🐴
+Monkey face,🐵
+Dog face,🐶
+Pig face,🐷
+Bear face,🐻
+Hamster face,🐹
+Wolf face,🐺
+Cow face,🐮
+Rabbit face,🐰
+Frog face,🐸
+Footprints,🐾
+Angry face,😠
+Weary face,😩
+Astonished face,😲
+Disappointed face,😞
+Face with cold sweat,😰
+Unamused face,😒
+Smiling face with heart-shaped eyes,😍
+Face with teeth,😤
+Face with tongue and winking,😜
+Face with tongue and closed eyes,😝
+Face savoring delicious food,😊
+Face throwing a kiss,😘
+Kissing face with closed eyes,😚
+Face with medical mask,😷
+Flushed face,😳
+Smiling face with open mouth,😃
+Face with tears of joy,😂
+Smiling face,☺
+Smiling face with smiling eyes,😄
+Crying face,😢
+Loudly crying face,😭
+Fearful face,😨
+Pouting face,😡
+Relieved face,😌
+Confounded face,😖
+Face screaming in fear,😱
+Sleepy face,😪
+Smirking face,😏
+Face with sweat,😓
+Disappointed but relieved face,😥
+Tired face,😫
+Winking face,😉
+House,🏠
+House with garden,🏡
+Office building,🏢
+Japanese post office,🏣
+Hospital,🏥
+Bank,🏦
+Automated teller machine,🏧
+Hotel,🏨
+Love hotel,🏩
+Convenience store,🏪
+School,🏫
+Church,⛪
+Fountain,⛲
+Department store,🏬
+Japanese castle,🏯
+European castle,🏰
+Factory,🏭
+Mount fuji,🗻
+Tokyo tower,🗼
+Statue of liberty,🗽
+Athletic shoe,👟
+High-heeled shoe,👠
+Womans sandal,👡
+Womans boot,👢
+T-shirt,👕
+Crown,👑
+Necktie,👔
+Womans hat,👒
+Dress,👗
+Kimono,👘
+Bikini,👙
+Handbag,👜
+Money bag,💰
+Dollar sign,💲
+Banknote with yen sign,💴
+Banknote with dollar sign,💵
+Fire,🔥
+Hammer,🔨
+Pistol,🔫
+Japanese beginner symbol,🔰
+Trident emblem,🔱
+Syringe,💉
+Pill,💊
+Ribbon,🎀
+Wrapped present,🎁
+Christmas tree,🎄
+Father christmas,🎅
+Crossed flags,🎌
+Balloon,🎈
+Party popper,🎉
+Pine decoration,🎍
+Japanese dolls,🎎
+Graduation cap,🎓
+School satchel,🎒
+Carp streamer,🎏
+Wind chime,🎐
+Jack-o-lantern,🎃
+Telephone,☎
+Telephone receiver,📞
+Mobile phone,📱
+Mobile phone with arrow,📲
+Memo,📝
+Fax machine,📠
+Envelope,✉
+Incoming envelope,📨
+Envelope with downwards arrow above,📩
+Closed mailbox with lowered flag,📪
+Closed mailbox with raised flag,📫
+Open mailbox with lowered flag,📭
+Open mailbox with raised flag,📬
+Postbox,📮
+Public address loudspeaker,📢
+Cheering megaphone,📣
+Satellite dish antenna,📡
+Seat,💺
+Personal computer,💻
+Briefcase,💼
+Minidisc,💽
+Floppy disk,💾
+Optical disc,💿
+Dvd,📀
+Scissors,✂
+Open book,📖
+Baseball,⚾
+Golf flag in hole,⛳
+Tennis ball,🎾
+Soccer ball,⚽
+Skis,🎿
+Basketball,🏀
+Checkered flag,🏁
+Trophy,🏆
+American football,🏈
+Railway car,🚃
+High-speed train,🚄
+High-speed train bullet nose,🚅
+Automobile,🚗
+Recreational vehicle,🚙
+Bus,🚌
+Bus stop,🚏
+Ship,🚢
+Airplane,✈
+Sailboat,⛵
+Station,🚉
+Rocket,🚀
+Speedboat,🚤
+Taxi,🚕
+Delivery truck,🚚
+Fire engine,🚒
+Ambulance,🚑
+Police car,🚓
+Fuel pump,⛽
+Horizontal traffic light,🚥
+Construction sign,🚧
+Hot springs,♨
+Tent,⛺
+Ferris wheel,🎡
+Roller coaster,🎢
+Microphone,🎤
+Movie camera,🎥
+Film strip,🎦
+Headphone,🎧
+Artist palette,🎨
+Top hat,🎩
+Ticket,🎫
+Clapper board,🎬
+Performing arts,🎭
+Mahjong red dragon tile,🀄
+Darts target bullseye,🎯
+Billiards,8-ball,🎱
+Musical note,🎵
+Multiple musical notes,🎶
+Saxophone,🎷
+Guitar,🎸
+Trumpet,🎺
+Part alternation mark,〽
+Camera,📷
+Television,📺
+Radio,📻
+Videocassette,📼
+Kiss mark,💋
+Love letter,💌
+Ring,💍
+Gem stone,💎
+Kiss,💏
+Bouquet,💐
+Couple with heart,💑
+Wedding,💒
+No one under eighteen symbol,🔞
+Antenna with bars,📶
+Vibration mode,📳
+Mobile phone off,📴
+Hamburger,🍔
+Rice ball,🍙
+Shortcake,🍰
+Steaming bowl,🍜
+Bread,🍞
+Cooking,🍳
+Ice cream,🍦
+French fries,🍟
+Dango,🍡
+Rice cracker,🍘
+Cooked rice,🍚
+Spaghetti,🍝
+Curry and rice,🍛
+Oden,🍢
+Sushi,🍣
+Bento box,🍱
+Pot of food,🍲
+Shaved ice,🍧
+Fork and knife,🍴
+Hot beverage,☕
+Cocktail glass,🍸
+Beer mug,🍺
+Teacup without handle,🍵
+Sake bottle and cup,🍶
+Clinking beer mugs,🍻
+North east arrow,↗
+South east arrow,↘
+North west arrow,↖
+South west arrow,↙
+Right arrow curving up,⤴
+Right arrow curving down,⤵
+Up arrow,⬆
+Down arrow,⬇
+Right arrow,➡
+Left arrow,⬅
+Heavy large circle,⭕
+Cross,❌
+Negative squared cross,❎
+Red exclamation point,❗
+Black exclamation point,❓
+White exclamation point,❕
+White question mark,❔
+Double curly loop,➿
+Big heart,❤
+Beating heart,💓
+Broken heart,💔
+Sparkling heart,💖
+Growing heart,💗
+Heart with arrow,💘
+Blue heart,💙
+Green heart,💚
+Yellow heart,💛
+Purple heart,💜
+Heart with ribbon,💝
+Revolving hearts,💞
+Heart decoration,💟
+Heart card,♥
+Spade card,♠
+Diamond card,♦
+Club card,♣
+Smoking symbol,🚬
+No smoking symbol,🚭
+Wheelchair symbol,♿
+Warning sign,⚠
+No entry,⛔
+Bicycle,🚲
+Mens symbol,🚹
+Womens symbol,🚺
+Baby symbol,🚼
+Restroom,🚻
+Bathtub,🛀
+Toilet,🚽
+Water closet,🚾
+Squared cool,🆒
+Squared up!,🆙
+Squared vs,🆚
+Squared katakana koko,🈁
+Squared katakana sa,🈂
+Squared ideograph,🈳
+Squared ideograph,🈵
+Squared ideograph,🈶
+Squared ideograph,🈚
+Squared ideograph,🈷
+Squared ideograph,🈸
+Squared ideograph,🈹
+Squared ideograph,🈯
+Squared ideograph,🈺
+Circled ideograph secret,㊙
+Circled ideograph congratulations,㊗
+Circled ideograph advantage,🉐
+Multiplication,✖
+Diamond with dot inside,💠
+Electric light bulb,💡
+Anger symbol,💢
+Bomb,💣
+Sleeping symbol,💤
+Splashing sweat symbol,💦
+Droplet,💧
+Dash symbol,💨
+Flexed biceps,💪
+Sparkles,✨
+Eight pointed black star,✴
+Eight spoked asterisk,✳
+Medium white circle,⚪
+Medium black circle,⚫
+Large red circle,🔴
+Large blue circle,🔵
+Black square button,🔲
+White square button,🔳
+White medium star,⭐
+White large square,⬜
+Black large square,⬛
+White small square,▫
+Black small square,▪
+White medium small square,◽
+Black medium small square,◾
+White medium square,◻
+Black medium square,◼
+Large orange diamond,🔶
+Large blue diamond,🔷
+Small orange diamond,🔸
+Small blue diamond,🔹
+Left-pointing magnifying glass,🔍
+Right-pointing magnifying glass,🔎
+Lock,🔒
+Open lock,🔓
+Lock with ink pen,🔏
+Closed lock with key,🔐
+Key,🔑
+Bell,🔔
+Praying hands,🙏
+Raised hand,✋
+Raised hands,🙌
+Raised fist,✊
+Victory hand,✌
+Fisted hand,👊
+Thumbs up,👍
+Pointing up,☝
+Pointing up,👆
+Pointing down,👇
+Pointing left,👈
+Pointing right,👉
+Waving hand,👋
+Clapping hands,👏
+Ok hand,👌
+Thumbs down,👎
+Open hands,👐
