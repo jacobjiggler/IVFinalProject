@@ -18,3 +18,5 @@ The amount of time spent on this project can be roughly split into the following
  - 30-35 hours of raw implementation (and learning how to use node js and brushing up my client side js)
  
 We split the work about evenly. I foced on Facebook data gathering while Jake focused on Twitch. We both worked on the implementation and frontend after that.
+
+Changing datasets are done by modifying emoji.html to change both lines of d3.json("json_*", *) to valid files in the respective folders.
