@@ -34,6 +34,7 @@ body {
   font: 11px "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-anchor: middle;
   text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+  font-weight: bold;
 }
 
 .label,
@@ -159,7 +160,7 @@ var svg = d3.select("#visualization").append("svg")
 
 d3.json("emoji_list.json", function(error, root) {
 	if (error) throw error;
-	
+
 	var pattern = svg.selectAll("defs").data(root).enter()
 	.append("defs")
 		.append("pattern")
@@ -178,33 +179,33 @@ d3.json("emoji_list.json", function(error, root) {
 		.attr("preserveAspectRatio", "xMidYMid meet")
 		.style("image-rendering", "pixelated");
 });
-	
-d3.json("json_input/syndicate.json", function(error, root) {
+
+d3.json("json_input/destiny.json", function(error, root) {
   if (error) throw error;
 
   for (var i = 0; i < root.children.length; i++)
 	{
 		var user = root.children[i];
 		var cur_user_total = {};
-		
+
 		for (var emoji_ind in user.children)
 		{
 			var emoji = user.children[emoji_ind];
-			
+
 			cur_user_total[emoji.name] = emoji.size;
-			
+
 			if (totals[emoji.name] != undefined)
 				totals[emoji.name] += emoji.size;
 			else
 				totals[emoji.name] = emoji.size;
 		}
-		
+
 		user_totals[user.name] = cur_user_total;
 	}
-	
+
 	//console.log(totals);
-	
-  
+
+
   var focus = root,
       nodes = pack.nodes(root),
       view;
@@ -215,13 +216,13 @@ d3.json("json_input/syndicate.json", function(error, root) {
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
       .style("fill", function(d) { return d.children ? color(d.depth) : "url(#id-img-" + d.name + ")"; })
       .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
-	    
+
   var text = svg.selectAll("text")
       .data(nodes)
     .enter().append("text")
       .attr("class", "label")
       .style("fill-opacity", function(d) { return d.parent === root ? 1 : 0; })
-      .style("display", function(d) { return d.parent === root ? "inline" : "none"; })
+      .style("display", function(d) { return d.parent === root  && root.children.length < 50 ? "inline" : "none"; })
       .text(function(d) { return d.name; });
 
   var node = svg.selectAll("circle,text");
@@ -234,7 +235,6 @@ d3.json("json_input/syndicate.json", function(error, root) {
 
   function zoom(d) {
     var focus0 = focus; focus = d;
-	console.log(focus);
 
     var transition = d3.transition()
         .duration(750)
@@ -246,7 +246,7 @@ d3.json("json_input/syndicate.json", function(error, root) {
     transition.selectAll("text")
       .filter(function(d) { return d.parent === focus || this.style.display === "inline"; })
         .style("fill-opacity", function(d) { return d.parent === focus ? 1 : 0; })
-        .each("start", function(d) { if (d.parent === focus) this.style.display = "inline"; })
+        .each("start", function(d) { if (d.parent === focus  && focus.children.length < 50) this.style.display = "inline"; })
         .each("end", function(d) { if (d.parent !== focus) this.style.display = "none"; });
   }
 
@@ -267,10 +267,10 @@ function update_table(focus)
 
 	var rows = total_table_body.selectAll("tr")
 		.data(focus_data);
-		
+
 	rows.enter()
 		.append("tr");
-		
+
 	rows.order();*/
 }
 
