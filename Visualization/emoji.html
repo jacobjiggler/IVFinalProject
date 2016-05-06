@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="base-min.css">
+<link rel="stylesheet" type="text/css" href="pure-min.css">
 <style>
 
 html {
@@ -80,6 +83,10 @@ body {
 	bottom: 50%;
 }
 
+.vis-row-top h2 {
+	text-align: center;
+}
+
 .vis-row-bottom {
 	position: absolute;
 	left: 0;
@@ -105,6 +112,28 @@ body {
 	right: 0;
 }
 
+.container {
+	overflow-y: scroll;
+	height: 100%;
+}
+
+#total-table {
+	width: 80%;
+	margin: 5px auto;
+	margin-bottom: 30px;
+}
+
+#total-table thead {
+	font-weight: bold;
+}
+
+#total-table tbody tr td img {
+	display: block;
+	margin: 0 auto;
+	max-width: 32px;
+	max-height: 32px;
+}
+
 </style>
 </head>
 <body>
@@ -113,16 +142,20 @@ body {
 	</div>
 	<div class="vis-column-right">
 		<div class="vis-row-top">
-		<h2>Total Emoji Count</h2>
-		<table id="total-table">
-			<thead>
-				<td> </td>
-				<td>Text</td>
-				<td>Frequency</td>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+			<div class="container">
+				<h2>Total Emoji Count</h2>
+				<table id="total-table" class="pure-table">
+					<thead>
+						<tr>
+							<td>Image</td>
+							<td>Name</td>
+							<td>Frequency</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<div class="vis-row-bottom time-chart">
 		<h2>Emoji Use Over Time</h2>
@@ -191,13 +224,12 @@ d3.json("json_input/destiny.json", function(error, root) {
 		for (var emoji_ind in user.children)
 		{
 			var emoji = user.children[emoji_ind];
-
-			cur_user_total[emoji.name] = emoji.size;
+			cur_user_total[emoji.name] = { "name" : emoji.name, "freq" : emoji.size };
 
 			if (totals[emoji.name] != undefined)
-				totals[emoji.name] += emoji.size;
+				totals[emoji.name].freq += emoji.size;
 			else
-				totals[emoji.name] = emoji.size;
+				totals[emoji.name] = {"name" : emoji.name, "freq" : emoji.size };
 		}
 
 		user_totals[user.name] = cur_user_total;
@@ -232,9 +264,12 @@ d3.json("json_input/destiny.json", function(error, root) {
       .on("click", function() { zoom(root); });
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
+  
+  update_table(focus);
 
   function zoom(d) {
     var focus0 = focus; focus = d;
+	update_table(focus);
 
     var transition = d3.transition()
         .duration(750)
@@ -258,23 +293,51 @@ d3.json("json_input/destiny.json", function(error, root) {
 });
 
 var total_table_body = d3.select("#total-table tbody");
+var table_extract_row_data = function(d) {
+	return ["twitch_emojis/" + d.name + ".png", d.name, d.freq];
+	//return d;
+};
 
 function update_table(focus)
 {
-	/*var focus_data = user_totals[focus.name];
-	if (focus_data == undefined)
-		focus_data = totals;
+	//console.log("test");
 
+	var focus_data_dict = user_totals[focus.name];
+	if (focus_data_dict == undefined)
+		focus_data_dict = totals;
+		
+	//HACK javascript is silly. Should be able to take values from a dictionary built-in
+	var focus_data = new Array();
+	for (var key in focus_data_dict)
+	{
+		focus_data.push(focus_data_dict[key]);
+	}
+		
 	var rows = total_table_body.selectAll("tr")
 		.data(focus_data);
-
-	rows.enter()
-		.append("tr");
-
-	rows.order();*/
+		
+	rows.enter().append("tr");
+		
+	var cells = rows.selectAll("td").data(table_extract_row_data);
+	var cells_enter = cells.enter();
+	cells_enter.append("td").filter(function(d, i) { return i === 0; }).append("img");
+	
+	cells.exit().remove();
+	
+	rows.selectAll("td").filter(function(d, i) { return i === 0; }).select("img").attr("src", function(d) { return d; });
+	rows.selectAll("td").filter(function(d, i) { return i === 1 || i === 2; }).text(function(d) { return d; });
+	
+	rows.exit().remove();
+		
+	d3.selectAll("#total-table tbody tr")
+		.sort(function(a, b) { return d3.descending(a.freq, b.freq); })
+		.classed("pure-table-odd", false)
+		.filter(function (d, i) { return i % 2 == 0; })
+		.classed("pure-table-odd", true);
 }
 
 //d3.select(self.frameElement).style("height", diameter + "px");
 
 </script>
 </body>
+
