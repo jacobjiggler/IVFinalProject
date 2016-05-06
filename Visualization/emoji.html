@@ -87,6 +87,10 @@ body {
 	text-align: center;
 }
 
+.vis-row-bottom h2 {
+	text-align: center;
+}
+
 .vis-row-bottom {
 	position: absolute;
 	left: 0;
@@ -158,7 +162,9 @@ body {
 			</div>
 		</div>
 		<div class="vis-row-bottom time-chart">
-		<h2>Emoji Use Over Time</h2>
+			<div class="container">
+				<h2>Emoji Use Over Time</h2>
+			</div>
 		</div>
 	</div>
 </div>
@@ -167,6 +173,9 @@ body {
 
 var totals = {};
 var user_totals = {};
+
+var times = {};
+var user_times = {};
 
 var margin = 15,
     diameter = 820;
@@ -191,6 +200,21 @@ var svg = d3.select("#visualization").append("svg")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
 	.classed("svg-content-responsive", true);
 
+var time_svg = d3.select(".vis-row-bottom .container").append("svg")
+	.attr("width", "100%")
+	.attr("height", 450)
+	.append("g")
+		.attr("transform", "translate(0,0)");
+	
+var time_x = d3.time.scale().range([0, 300]);
+var time_y = d3.scale.linear().range([100, 0]);
+var time_x_axis = d3.svg.axis().scale(time_x).orient("bottom");
+var time_y_axis = d3.svg.axis().scale(time_y).orient("left");
+var line = d3.svg.line()
+	.x(function (d) { return time_x(d.time); })
+	.y(function (d) { return time_y(d.freq); });
+
+	
 d3.json("emoji_list.json", function(error, root) {
 	if (error) throw error;
 
@@ -211,6 +235,24 @@ d3.json("emoji_list.json", function(error, root) {
 		.attr("width", 1)
 		.attr("preserveAspectRatio", "xMidYMid meet")
 		.style("image-rendering", "pixelated");
+});
+
+d3.json("json_time_input/syndicate.json", function(error, root) {
+	if (error) throw error;
+	
+	for (var i = 0; i < root.data; i++)
+	{
+		var timeslice = root.data[i];
+		var timestamp = Date(timeslice.time);
+		
+		times[timestamp] = {"time" : timestamp, "freq" : timeslice.users.length};
+		
+		/*for (var user_ind in timeslice.users)
+		{
+			var user = timeslice.users[user_ind];
+			
+		}*/
+	}
 });
 
 d3.json("json_input/syndicate.json", function(error, root) {
@@ -266,6 +308,7 @@ d3.json("json_input/syndicate.json", function(error, root) {
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
   update_table(focus);
+  update_time_chart(times);
 
   function zoom(d) {
     var focus0 = focus; focus = d;
@@ -295,7 +338,6 @@ d3.json("json_input/syndicate.json", function(error, root) {
 var total_table_body = d3.select("#total-table tbody");
 var table_extract_row_data = function(d) {
 	return ["twitch_emojis/" + d.name + ".png", d.name, d.freq];
-	//return d;
 };
 
 function update_table(focus)
@@ -334,6 +376,26 @@ function update_table(focus)
 		.classed("pure-table-odd", false)
 		.filter(function (d, i) { return i % 2 == 0; })
 		.classed("pure-table-odd", true);
+}
+
+function update_time_chart(focus)
+{
+	x.domain(d3.extent(focus, function(d) { return d.time; }));
+	y.domain(d3.extent(focus, function(d) { return d.freq; }));
+	
+	time_svg.append("g")
+		.attr("class", "vis-time-axis vis-time-axis-x")
+		.attr("transform", "translate(0," + 450 + ")")
+		.call(xAxis);
+		
+	time_svg.append("g")
+		.attr("class", "vis-time-axis vis-time-axis-y")
+		.call(yAxis);
+		
+	time_svg.append("path")
+		.datum(focus)
+		.attr("class", "line")
+		.attr("d", line);
 }
 
 //d3.select(self.frameElement).style("height", diameter + "px");
