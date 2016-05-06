@@ -138,6 +138,12 @@ body {
 	max-height: 32px;
 }
 
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
 </style>
 </head>
 <body>
@@ -174,7 +180,7 @@ body {
 var totals = {};
 var user_totals = {};
 
-var times = {};
+var times = new Array();
 var user_times = {};
 
 var margin = 15,
@@ -201,16 +207,17 @@ var svg = d3.select("#visualization").append("svg")
 	.classed("svg-content-responsive", true);
 
 var time_svg = d3.select(".vis-row-bottom .container").append("svg")
-	.attr("width", "100%")
+	.attr("width", 600)
 	.attr("height", 450)
 	.append("g")
-		.attr("transform", "translate(0,0)");
+		.attr("transform", "translate(50,0)");
 	
-var time_x = d3.time.scale().range([0, 300]);
-var time_y = d3.scale.linear().range([100, 0]);
+var time_format = d3.time.format(" %a %b %d %H:%M:%S");
+var time_x = d3.time.scale().range([0, 500]);
+var time_y = d3.scale.linear().range([300, 0]);
 var time_x_axis = d3.svg.axis().scale(time_x).orient("bottom");
 var time_y_axis = d3.svg.axis().scale(time_y).orient("left");
-var line = d3.svg.line()
+var time_line = d3.svg.line()
 	.x(function (d) { return time_x(d.time); })
 	.y(function (d) { return time_y(d.freq); });
 
@@ -240,12 +247,12 @@ d3.json("emoji_list.json", function(error, root) {
 d3.json("json_time_input/syndicate.json", function(error, root) {
 	if (error) throw error;
 	
-	for (var i = 0; i < root.data; i++)
+	for (var i = 0; i < root.data.length; i++)
 	{
 		var timeslice = root.data[i];
-		var timestamp = Date(timeslice.time);
+		var timestamp = time_format.parse(timeslice.time);
 		
-		times[timestamp] = {"time" : timestamp, "freq" : timeslice.users.length};
+		times.push({"time" : timestamp, "freq" : timeslice.users.length});
 		
 		/*for (var user_ind in timeslice.users)
 		{
@@ -253,6 +260,8 @@ d3.json("json_time_input/syndicate.json", function(error, root) {
 			
 		}*/
 	}
+	
+	update_time_chart(times);
 });
 
 d3.json("json_input/syndicate.json", function(error, root) {
@@ -380,22 +389,24 @@ function update_table(focus)
 
 function update_time_chart(focus)
 {
-	x.domain(d3.extent(focus, function(d) { return d.time; }));
-	y.domain(d3.extent(focus, function(d) { return d.freq; }));
+	time_x.domain(d3.extent(focus, function(d) { return d.time; }));
+	time_y.domain(d3.extent(focus, function(d) { return d.freq; }));
 	
 	time_svg.append("g")
 		.attr("class", "vis-time-axis vis-time-axis-x")
-		.attr("transform", "translate(0," + 450 + ")")
-		.call(xAxis);
+		.attr("transform", "translate(" + 10 + "," + 320 + ")")
+		.call(time_x_axis);
 		
 	time_svg.append("g")
 		.attr("class", "vis-time-axis vis-time-axis-y")
-		.call(yAxis);
+		.attr("transform", "translate(" + 10 + "," + 20 + ")")
+		.call(time_y_axis);
 		
 	time_svg.append("path")
 		.datum(focus)
 		.attr("class", "line")
-		.attr("d", line);
+		.attr("transform", "translate(" + 10 + "," + 20 + ")")
+		.attr("d", time_line);
 }
 
 //d3.select(self.frameElement).style("height", diameter + "px");
