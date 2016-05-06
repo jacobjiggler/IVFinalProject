@@ -213,7 +213,7 @@ d3.json("emoji_list.json", function(error, root) {
 		.style("image-rendering", "pixelated");
 });
 
-d3.json("json_input/destiny.json", function(error, root) {
+d3.json("json_input/syndicate.json", function(error, root) {
   if (error) throw error;
 
   for (var i = 0; i < root.children.length; i++)
@@ -264,7 +264,7 @@ d3.json("json_input/destiny.json", function(error, root) {
       .on("click", function() { zoom(root); });
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
-  
+
   update_table(focus);
 
   function zoom(d) {
@@ -305,30 +305,30 @@ function update_table(focus)
 	var focus_data_dict = user_totals[focus.name];
 	if (focus_data_dict == undefined)
 		focus_data_dict = totals;
-		
+
 	//HACK javascript is silly. Should be able to take values from a dictionary built-in
 	var focus_data = new Array();
 	for (var key in focus_data_dict)
 	{
 		focus_data.push(focus_data_dict[key]);
 	}
-		
+
 	var rows = total_table_body.selectAll("tr")
 		.data(focus_data);
-		
+
 	rows.enter().append("tr");
-		
+
 	var cells = rows.selectAll("td").data(table_extract_row_data);
 	var cells_enter = cells.enter();
 	cells_enter.append("td").filter(function(d, i) { return i === 0; }).append("img");
-	
+
 	cells.exit().remove();
-	
+
 	rows.selectAll("td").filter(function(d, i) { return i === 0; }).select("img").attr("src", function(d) { return d; });
 	rows.selectAll("td").filter(function(d, i) { return i === 1 || i === 2; }).text(function(d) { return d; });
-	
+
 	rows.exit().remove();
-		
+
 	d3.selectAll("#total-table tbody tr")
 		.sort(function(a, b) { return d3.descending(a.freq, b.freq); })
 		.classed("pure-table-odd", false)
@@ -340,4 +340,3 @@ function update_table(focus)
 
 </script>
 </body>
-
