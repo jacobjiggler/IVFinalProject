@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <head>
 <meta charset="utf-8">
+
+<link rel="stylesheet" type="text/css" href="base-min.css">
+<link rel="stylesheet" type="text/css" href="pure-min.css">
 <style>
 
 html {
@@ -80,6 +83,14 @@ body {
 	bottom: 50%;
 }
 
+.vis-row-top h2 {
+	text-align: center;
+}
+
+.vis-row-bottom h2 {
+	text-align: center;
+}
+
 .vis-row-bottom {
 	position: absolute;
 	left: 0;
@@ -105,6 +116,34 @@ body {
 	right: 0;
 }
 
+.container {
+	overflow-y: scroll;
+	height: 100%;
+}
+
+#total-table {
+	width: 80%;
+	margin: 5px auto;
+	margin-bottom: 30px;
+}
+
+#total-table thead {
+	font-weight: bold;
+}
+
+#total-table tbody tr td img {
+	display: block;
+	margin: 0 auto;
+	max-width: 32px;
+	max-height: 32px;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
 </style>
 </head>
 <body>
@@ -113,19 +152,25 @@ body {
 	</div>
 	<div class="vis-column-right">
 		<div class="vis-row-top">
-		<h2>Total Emoji Count</h2>
-		<table id="total-table">
-			<thead>
-				<td> </td>
-				<td>Text</td>
-				<td>Frequency</td>
-			</thead>
-			<tbody>
-			</tbody>
-		</table>
+			<div class="container">
+				<h2>Total Emoji Count</h2>
+				<table id="total-table" class="pure-table">
+					<thead>
+						<tr>
+							<td>Image</td>
+							<td>Name</td>
+							<td>Frequency</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
 		</div>
 		<div class="vis-row-bottom time-chart">
-		<h2>Emoji Use Over Time</h2>
+			<div class="container">
+				<h2>Emoji Use Over Time</h2>
+			</div>
 		</div>
 	</div>
 </div>
@@ -134,6 +179,9 @@ body {
 
 var totals = {};
 var user_totals = {};
+
+var times = new Array();
+var user_times = {};
 
 var margin = 15,
     diameter = 820;
@@ -158,6 +206,22 @@ var svg = d3.select("#visualization").append("svg")
     .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")")
 	.classed("svg-content-responsive", true);
 
+var time_svg = d3.select(".vis-row-bottom .container").append("svg")
+	.attr("width", 600)
+	.attr("height", 450)
+	.append("g")
+		.attr("transform", "translate(50,0)");
+	
+var time_format = d3.time.format(" %a %b %d %H:%M:%S");
+var time_x = d3.time.scale().range([0, 500]);
+var time_y = d3.scale.linear().range([300, 0]);
+var time_x_axis = d3.svg.axis().scale(time_x).orient("bottom");
+var time_y_axis = d3.svg.axis().scale(time_y).orient("left");
+var time_line = d3.svg.line()
+	.x(function (d) { return time_x(d.time); })
+	.y(function (d) { return time_y(d.freq); });
+
+	
 d3.json("emoji_list.json", function(error, root) {
 	if (error) throw error;
 
@@ -180,7 +244,27 @@ d3.json("emoji_list.json", function(error, root) {
 		.style("image-rendering", "pixelated");
 });
 
-d3.json("json_input/forsenlol.json", function(error, root) {
+d3.json("json_time_input/syndicate.json", function(error, root) {
+	if (error) throw error;
+	
+	for (var i = 0; i < root.data.length; i++)
+	{
+		var timeslice = root.data[i];
+		var timestamp = time_format.parse(timeslice.time);
+		
+		times.push({"time" : timestamp, "freq" : timeslice.users.length});
+		
+		/*for (var user_ind in timeslice.users)
+		{
+			var user = timeslice.users[user_ind];
+			
+		}*/
+	}
+	
+	update_time_chart(times);
+});
+
+d3.json("json_input/syndicate.json", function(error, root) {
   if (error) throw error;
 
   for (var i = 0; i < root.children.length; i++)
@@ -191,13 +275,12 @@ d3.json("json_input/forsenlol.json", function(error, root) {
 		for (var emoji_ind in user.children)
 		{
 			var emoji = user.children[emoji_ind];
-
-			cur_user_total[emoji.name] = emoji.size;
+			cur_user_total[emoji.name] = { "name" : emoji.name, "freq" : emoji.size };
 
 			if (totals[emoji.name] != undefined)
-				totals[emoji.name] += emoji.size;
+				totals[emoji.name].freq += emoji.size;
 			else
-				totals[emoji.name] = emoji.size;
+				totals[emoji.name] = {"name" : emoji.name, "freq" : emoji.size };
 		}
 
 		user_totals[user.name] = cur_user_total;
@@ -233,8 +316,12 @@ d3.json("json_input/forsenlol.json", function(error, root) {
 
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
+  update_table(focus);
+  update_time_chart(times);
+
   function zoom(d) {
     var focus0 = focus; focus = d;
+	update_table(focus);
 
     var transition = d3.transition()
         .duration(750)
@@ -258,20 +345,68 @@ d3.json("json_input/forsenlol.json", function(error, root) {
 });
 
 var total_table_body = d3.select("#total-table tbody");
+var table_extract_row_data = function(d) {
+	return ["twitch_emojis/" + d.name + ".png", d.name, d.freq];
+};
 
 function update_table(focus)
 {
-	/*var focus_data = user_totals[focus.name];
-	if (focus_data == undefined)
-		focus_data = totals;
+	//console.log("test");
+
+	var focus_data_dict = user_totals[focus.name];
+	if (focus_data_dict == undefined)
+		focus_data_dict = totals;
+
+	//HACK javascript is silly. Should be able to take values from a dictionary built-in
+	var focus_data = new Array();
+	for (var key in focus_data_dict)
+	{
+		focus_data.push(focus_data_dict[key]);
+	}
 
 	var rows = total_table_body.selectAll("tr")
 		.data(focus_data);
 
-	rows.enter()
-		.append("tr");
+	rows.enter().append("tr");
 
-	rows.order();*/
+	var cells = rows.selectAll("td").data(table_extract_row_data);
+	var cells_enter = cells.enter();
+	cells_enter.append("td").filter(function(d, i) { return i === 0; }).append("img");
+
+	cells.exit().remove();
+
+	rows.selectAll("td").filter(function(d, i) { return i === 0; }).select("img").attr("src", function(d) { return d; });
+	rows.selectAll("td").filter(function(d, i) { return i === 1 || i === 2; }).text(function(d) { return d; });
+
+	rows.exit().remove();
+
+	d3.selectAll("#total-table tbody tr")
+		.sort(function(a, b) { return d3.descending(a.freq, b.freq); })
+		.classed("pure-table-odd", false)
+		.filter(function (d, i) { return i % 2 == 0; })
+		.classed("pure-table-odd", true);
+}
+
+function update_time_chart(focus)
+{
+	time_x.domain(d3.extent(focus, function(d) { return d.time; }));
+	time_y.domain(d3.extent(focus, function(d) { return d.freq; }));
+	
+	time_svg.append("g")
+		.attr("class", "vis-time-axis vis-time-axis-x")
+		.attr("transform", "translate(" + 10 + "," + 320 + ")")
+		.call(time_x_axis);
+		
+	time_svg.append("g")
+		.attr("class", "vis-time-axis vis-time-axis-y")
+		.attr("transform", "translate(" + 10 + "," + 20 + ")")
+		.call(time_y_axis);
+		
+	time_svg.append("path")
+		.datum(focus)
+		.attr("class", "line")
+		.attr("transform", "translate(" + 10 + "," + 20 + ")")
+		.attr("d", time_line);
 }
 
 //d3.select(self.frameElement).style("height", diameter + "px");
