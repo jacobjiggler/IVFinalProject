@@ -29,3 +29,6 @@
 
 /twitch_log
 twitch_log/
+
+node_modules
+npm-debug.log

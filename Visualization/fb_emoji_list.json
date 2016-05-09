@@ -1,0 +1,1373 @@
+[
+	{
+		"name": "Smile"
+	},
+	{
+		"name": "Frown"
+	},
+	{
+		"name": "Tongue"
+	},
+	{
+		"name": "Grin"
+	},
+	{
+		"name": "Gasp"
+	},
+	{
+		"name": "Wink"
+	},
+	{
+		"name": "Glasses"
+	},
+	{
+		"name": "Sunglasses"
+	},
+	{
+		"name": "Grumpy"
+	},
+	{
+		"name": "Unsure"
+	},
+	{
+		"name": "Cry"
+	},
+	{
+		"name": "Devil"
+	},
+	{
+		"name": "Angel"
+	},
+	{
+		"name": "Kiss"
+	},
+	{
+		"name": "Kiki"
+	},
+	{
+		"name": "Squint"
+	},
+	{
+		"name": "Confused"
+	},
+	{
+		"name": "Upset"
+	},
+	{
+		"name": "Pacman"
+	},
+	{
+		"name": "Curly lips"
+	},
+	{
+		"name": "Heart"
+	},
+	{
+		"name": "Robot"
+	},
+	{
+		"name": "Penguin"
+	},
+	{
+		"name": "Putnam"
+	},
+	{
+		"name": "Shark"
+	},
+	{
+		"name": "Like"
+	},
+	{
+		"name": "Poop"
+	},
+	{
+		"name": "Sun with rays"
+	},
+	{
+		"name": "Cloud"
+	},
+	{
+		"name": "Umbrella with rain drops"
+	},
+	{
+		"name": "Snowman"
+	},
+	{
+		"name": "High voltage sign"
+	},
+	{
+		"name": "Cyclone"
+	},
+	{
+		"name": "Closed umbrella"
+	},
+	{
+		"name": "Starry night"
+	},
+	{
+		"name": "Sunrise over mountains"
+	},
+	{
+		"name": "Sunrise"
+	},
+	{
+		"name": "Cityscape at dusk"
+	},
+	{
+		"name": "Sunset over buildings"
+	},
+	{
+		"name": "Rainbow"
+	},
+	{
+		"name": "Water wave"
+	},
+	{
+		"name": "Crescent moon"
+	},
+	{
+		"name": "Glowing star"
+	},
+	{
+		"name": "Four leaf clover"
+	},
+	{
+		"name": "Tulip"
+	},
+	{
+		"name": "Seedling"
+	},
+	{
+		"name": "Maple leaf"
+	},
+	{
+		"name": "Cherry blossom"
+	},
+	{
+		"name": "Rose"
+	},
+	{
+		"name": "Fallen leaf"
+	},
+	{
+		"name": "Leaf fluttering in wind"
+	},
+	{
+		"name": "Hibiscus"
+	},
+	{
+		"name": "Sunflower"
+	},
+	{
+		"name": "Palm tree"
+	},
+	{
+		"name": "Cactus"
+	},
+	{
+		"name": "Ear of rice"
+	},
+	{
+		"name": "Red apple"
+	},
+	{
+		"name": "Tangerine"
+	},
+	{
+		"name": "Strawberry"
+	},
+	{
+		"name": "Watermelon"
+	},
+	{
+		"name": "Tomato"
+	},
+	{
+		"name": "Eggplant"
+	},
+	{
+		"name": "Eyes"
+	},
+	{
+		"name": "Ear"
+	},
+	{
+		"name": "Nose"
+	},
+	{
+		"name": "Mouth"
+	},
+	{
+		"name": "Lipstick"
+	},
+	{
+		"name": "Nail polish"
+	},
+	{
+		"name": "Barber pole"
+	},
+	{
+		"name": "Boy"
+	},
+	{
+		"name": "Girl"
+	},
+	{
+		"name": "Man"
+	},
+	{
+		"name": "Woman"
+	},
+	{
+		"name": "Man and woman holding hands"
+	},
+	{
+		"name": "Police officer"
+	},
+	{
+		"name": "Woman with bunny ears"
+	},
+	{
+		"name": "Person with blond hair"
+	},
+	{
+		"name": "Man with gua pi mao"
+	},
+	{
+		"name": "Man with turban"
+	},
+	{
+		"name": "Older man"
+	},
+	{
+		"name": "Older woman"
+	},
+	{
+		"name": "Baby"
+	},
+	{
+		"name": "Construction worker"
+	},
+	{
+		"name": "Princess"
+	},
+	{
+		"name": "Ghost"
+	},
+	{
+		"name": "Baby angel"
+	},
+	{
+		"name": "Extraterrestrial alien"
+	},
+	{
+		"name": "Alien monster"
+	},
+	{
+		"name": "Imp"
+	},
+	{
+		"name": "Skull"
+	},
+	{
+		"name": "Guardsman"
+	},
+	{
+		"name": "Dancer"
+	},
+	{
+		"name": "Snake"
+	},
+	{
+		"name": "Horse"
+	},
+	{
+		"name": "Chicken"
+	},
+	{
+		"name": "Boar"
+	},
+	{
+		"name": "Bactrian camel"
+	},
+	{
+		"name": "Elephant"
+	},
+	{
+		"name": "Koala"
+	},
+	{
+		"name": "Monkey"
+	},
+	{
+		"name": "Sheep"
+	},
+	{
+		"name": "Octopus"
+	},
+	{
+		"name": "Spiral shell"
+	},
+	{
+		"name": "Bug"
+	},
+	{
+		"name": "Tropical fish"
+	},
+	{
+		"name": "Blowfish"
+	},
+	{
+		"name": "Baby chick"
+	},
+	{
+		"name": "Bird"
+	},
+	{
+		"name": "Penguin"
+	},
+	{
+		"name": "Poodle"
+	},
+	{
+		"name": "Fish"
+	},
+	{
+		"name": "Dolphin"
+	},
+	{
+		"name": "Mouse face"
+	},
+	{
+		"name": "Tiger face"
+	},
+	{
+		"name": "Cat face"
+	},
+	{
+		"name": "Spouting whale"
+	},
+	{
+		"name": "Horse face"
+	},
+	{
+		"name": "Monkey face"
+	},
+	{
+		"name": "Dog face"
+	},
+	{
+		"name": "Pig face"
+	},
+	{
+		"name": "Bear face"
+	},
+	{
+		"name": "Hamster face"
+	},
+	{
+		"name": "Wolf face"
+	},
+	{
+		"name": "Cow face"
+	},
+	{
+		"name": "Rabbit face"
+	},
+	{
+		"name": "Frog face"
+	},
+	{
+		"name": "Footprints"
+	},
+	{
+		"name": "Angry face"
+	},
+	{
+		"name": "Weary face"
+	},
+	{
+		"name": "Astonished face"
+	},
+	{
+		"name": "Disappointed face"
+	},
+	{
+		"name": "Face with cold sweat"
+	},
+	{
+		"name": "Unamused face"
+	},
+	{
+		"name": "Smiling face with heart-shaped eyes"
+	},
+	{
+		"name": "Face with teeth"
+	},
+	{
+		"name": "Face with tongue and winking"
+	},
+	{
+		"name": "Face with tongue and closed eyes"
+	},
+	{
+		"name": "Face savoring delicious food"
+	},
+	{
+		"name": "Face throwing a kiss"
+	},
+	{
+		"name": "Kissing face with closed eyes"
+	},
+	{
+		"name": "Face with medical mask"
+	},
+	{
+		"name": "Flushed face"
+	},
+	{
+		"name": "Smiling face with open mouth"
+	},
+	{
+		"name": "Face with tears of joy"
+	},
+	{
+		"name": "Smiling face"
+	},
+	{
+		"name": "Smiling face with smiling eyes"
+	},
+	{
+		"name": "Crying face"
+	},
+	{
+		"name": "Loudly crying face"
+	},
+	{
+		"name": "Fearful face"
+	},
+	{
+		"name": "Pouting face"
+	},
+	{
+		"name": "Relieved face"
+	},
+	{
+		"name": "Confounded face"
+	},
+	{
+		"name": "Face screaming in fear"
+	},
+	{
+		"name": "Sleepy face"
+	},
+	{
+		"name": "Smirking face"
+	},
+	{
+		"name": "Face with sweat"
+	},
+	{
+		"name": "Disappointed but relieved face"
+	},
+	{
+		"name": "Tired face"
+	},
+	{
+		"name": "Winking face"
+	},
+	{
+		"name": "House"
+	},
+	{
+		"name": "House with garden"
+	},
+	{
+		"name": "Office building"
+	},
+	{
+		"name": "Japanese post office"
+	},
+	{
+		"name": "Hospital"
+	},
+	{
+		"name": "Bank"
+	},
+	{
+		"name": "Automated teller machine"
+	},
+	{
+		"name": "Hotel"
+	},
+	{
+		"name": "Love hotel"
+	},
+	{
+		"name": "Convenience store"
+	},
+	{
+		"name": "School"
+	},
+	{
+		"name": "Church"
+	},
+	{
+		"name": "Fountain"
+	},
+	{
+		"name": "Department store"
+	},
+	{
+		"name": "Japanese castle"
+	},
+	{
+		"name": "European castle"
+	},
+	{
+		"name": "Factory"
+	},
+	{
+		"name": "Mount fuji"
+	},
+	{
+		"name": "Tokyo tower"
+	},
+	{
+		"name": "Statue of liberty"
+	},
+	{
+		"name": "Athletic shoe"
+	},
+	{
+		"name": "High-heeled shoe"
+	},
+	{
+		"name": "Womans sandal"
+	},
+	{
+		"name": "Womans boot"
+	},
+	{
+		"name": "T-shirt"
+	},
+	{
+		"name": "Crown"
+	},
+	{
+		"name": "Necktie"
+	},
+	{
+		"name": "Womans hat"
+	},
+	{
+		"name": "Dress"
+	},
+	{
+		"name": "Kimono"
+	},
+	{
+		"name": "Bikini"
+	},
+	{
+		"name": "Handbag"
+	},
+	{
+		"name": "Money bag"
+	},
+	{
+		"name": "Dollar sign"
+	},
+	{
+		"name": "Banknote with yen sign"
+	},
+	{
+		"name": "Banknote with dollar sign"
+	},
+	{
+		"name": "Fire"
+	},
+	{
+		"name": "Hammer"
+	},
+	{
+		"name": "Pistol"
+	},
+	{
+		"name": "Japanese beginner symbol"
+	},
+	{
+		"name": "Trident emblem"
+	},
+	{
+		"name": "Syringe"
+	},
+	{
+		"name": "Pill"
+	},
+	{
+		"name": "Ribbon"
+	},
+	{
+		"name": "Wrapped present"
+	},
+	{
+		"name": "Christmas tree"
+	},
+	{
+		"name": "Father christmas"
+	},
+	{
+		"name": "Crossed flags"
+	},
+	{
+		"name": "Balloon"
+	},
+	{
+		"name": "Party popper"
+	},
+	{
+		"name": "Pine decoration"
+	},
+	{
+		"name": "Japanese dolls"
+	},
+	{
+		"name": "Graduation cap"
+	},
+	{
+		"name": "School satchel"
+	},
+	{
+		"name": "Carp streamer"
+	},
+	{
+		"name": "Wind chime"
+	},
+	{
+		"name": "Jack-o-lantern"
+	},
+	{
+		"name": "Telephone"
+	},
+	{
+		"name": "Telephone receiver"
+	},
+	{
+		"name": "Mobile phone"
+	},
+	{
+		"name": "Mobile phone with arrow"
+	},
+	{
+		"name": "Memo"
+	},
+	{
+		"name": "Fax machine"
+	},
+	{
+		"name": "Envelope"
+	},
+	{
+		"name": "Incoming envelope"
+	},
+	{
+		"name": "Envelope with downwards arrow above"
+	},
+	{
+		"name": "Closed mailbox with lowered flag"
+	},
+	{
+		"name": "Closed mailbox with raised flag"
+	},
+	{
+		"name": "Open mailbox with lowered flag"
+	},
+	{
+		"name": "Open mailbox with raised flag"
+	},
+	{
+		"name": "Postbox"
+	},
+	{
+		"name": "Public address loudspeaker"
+	},
+	{
+		"name": "Cheering megaphone"
+	},
+	{
+		"name": "Satellite dish antenna"
+	},
+	{
+		"name": "Seat"
+	},
+	{
+		"name": "Personal computer"
+	},
+	{
+		"name": "Briefcase"
+	},
+	{
+		"name": "Minidisc"
+	},
+	{
+		"name": "Floppy disk"
+	},
+	{
+		"name": "Optical disc"
+	},
+	{
+		"name": "Dvd"
+	},
+	{
+		"name": "Scissors"
+	},
+	{
+		"name": "Open book"
+	},
+	{
+		"name": "Baseball"
+	},
+	{
+		"name": "Golf flag in hole"
+	},
+	{
+		"name": "Tennis ball"
+	},
+	{
+		"name": "Soccer ball"
+	},
+	{
+		"name": "Skis"
+	},
+	{
+		"name": "Basketball"
+	},
+	{
+		"name": "Checkered flag"
+	},
+	{
+		"name": "Trophy"
+	},
+	{
+		"name": "American football"
+	},
+	{
+		"name": "Railway car"
+	},
+	{
+		"name": "High-speed train"
+	},
+	{
+		"name": "High-speed train bullet nose"
+	},
+	{
+		"name": "Automobile"
+	},
+	{
+		"name": "Recreational vehicle"
+	},
+	{
+		"name": "Bus"
+	},
+	{
+		"name": "Bus stop"
+	},
+	{
+		"name": "Ship"
+	},
+	{
+		"name": "Airplane"
+	},
+	{
+		"name": "Sailboat"
+	},
+	{
+		"name": "Station"
+	},
+	{
+		"name": "Rocket"
+	},
+	{
+		"name": "Speedboat"
+	},
+	{
+		"name": "Taxi"
+	},
+	{
+		"name": "Delivery truck"
+	},
+	{
+		"name": "Fire engine"
+	},
+	{
+		"name": "Ambulance"
+	},
+	{
+		"name": "Police car"
+	},
+	{
+		"name": "Fuel pump"
+	},
+	{
+		"name": "Horizontal traffic light"
+	},
+	{
+		"name": "Construction sign"
+	},
+	{
+		"name": "Hot springs"
+	},
+	{
+		"name": "Tent"
+	},
+	{
+		"name": "Ferris wheel"
+	},
+	{
+		"name": "Roller coaster"
+	},
+	{
+		"name": "Microphone"
+	},
+	{
+		"name": "Movie camera"
+	},
+	{
+		"name": "Film strip"
+	},
+	{
+		"name": "Headphone"
+	},
+	{
+		"name": "Artist palette"
+	},
+	{
+		"name": "Top hat"
+	},
+	{
+		"name": "Ticket"
+	},
+	{
+		"name": "Clapper board"
+	},
+	{
+		"name": "Performing arts"
+	},
+	{
+		"name": "Mahjong red dragon tile"
+	},
+	{
+		"name": "Darts target bullseye"
+	},
+	{
+		"name": "Billiards 8-ball"
+	},
+	{
+		"name": "Musical note"
+	},
+	{
+		"name": "Multiple musical notes"
+	},
+	{
+		"name": "Saxophone"
+	},
+	{
+		"name": "Guitar"
+	},
+	{
+		"name": "Trumpet"
+	},
+	{
+		"name": "Part alternation mark"
+	},
+	{
+		"name": "Camera"
+	},
+	{
+		"name": "Television"
+	},
+	{
+		"name": "Radio"
+	},
+	{
+		"name": "Videocassette"
+	},
+	{
+		"name": "Kiss mark"
+	},
+	{
+		"name": "Love letter"
+	},
+	{
+		"name": "Ring"
+	},
+	{
+		"name": "Gem stone"
+	},
+	{
+		"name": "Kiss"
+	},
+	{
+		"name": "Bouquet"
+	},
+	{
+		"name": "Couple with heart"
+	},
+	{
+		"name": "Wedding"
+	},
+	{
+		"name": "No one under eighteen symbol"
+	},
+	{
+		"name": "Antenna with bars"
+	},
+	{
+		"name": "Vibration mode"
+	},
+	{
+		"name": "Mobile phone off"
+	},
+	{
+		"name": "Hamburger"
+	},
+	{
+		"name": "Rice ball"
+	},
+	{
+		"name": "Shortcake"
+	},
+	{
+		"name": "Steaming bowl"
+	},
+	{
+		"name": "Bread"
+	},
+	{
+		"name": "Cooking"
+	},
+	{
+		"name": "Ice cream"
+	},
+	{
+		"name": "French fries"
+	},
+	{
+		"name": "Dango"
+	},
+	{
+		"name": "Rice cracker"
+	},
+	{
+		"name": "Cooked rice"
+	},
+	{
+		"name": "Spaghetti"
+	},
+	{
+		"name": "Curry and rice"
+	},
+	{
+		"name": "Oden"
+	},
+	{
+		"name": "Sushi"
+	},
+	{
+		"name": "Bento box"
+	},
+	{
+		"name": "Pot of food"
+	},
+	{
+		"name": "Shaved ice"
+	},
+	{
+		"name": "Fork and knife"
+	},
+	{
+		"name": "Hot beverage"
+	},
+	{
+		"name": "Cocktail glass"
+	},
+	{
+		"name": "Beer mug"
+	},
+	{
+		"name": "Teacup without handle"
+	},
+	{
+		"name": "Sake bottle and cup"
+	},
+	{
+		"name": "Clinking beer mugs"
+	},
+	{
+		"name": "North east arrow"
+	},
+	{
+		"name": "South east arrow"
+	},
+	{
+		"name": "North west arrow"
+	},
+	{
+		"name": "South west arrow"
+	},
+	{
+		"name": "Right arrow curving up"
+	},
+	{
+		"name": "Right arrow curving down"
+	},
+	{
+		"name": "Up arrow"
+	},
+	{
+		"name": "Down arrow"
+	},
+	{
+		"name": "Right arrow"
+	},
+	{
+		"name": "Left arrow"
+	},
+	{
+		"name": "Heavy large circle"
+	},
+	{
+		"name": "Cross"
+	},
+	{
+		"name": "Negative squared cross"
+	},
+	{
+		"name": "Red exclamation point"
+	},
+	{
+		"name": "Black exclamation point"
+	},
+	{
+		"name": "White exclamation point"
+	},
+	{
+		"name": "White question mark"
+	},
+	{
+		"name": "Double curly loop"
+	},
+	{
+		"name": "Big heart"
+	},
+	{
+		"name": "Beating heart"
+	},
+	{
+		"name": "Broken heart"
+	},
+	{
+		"name": "Sparkling heart"
+	},
+	{
+		"name": "Growing heart"
+	},
+	{
+		"name": "Heart with arrow"
+	},
+	{
+		"name": "Blue heart"
+	},
+	{
+		"name": "Green heart"
+	},
+	{
+		"name": "Yellow heart"
+	},
+	{
+		"name": "Purple heart"
+	},
+	{
+		"name": "Heart with ribbon"
+	},
+	{
+		"name": "Revolving hearts"
+	},
+	{
+		"name": "Heart decoration"
+	},
+	{
+		"name": "Heart card"
+	},
+	{
+		"name": "Spade card"
+	},
+	{
+		"name": "Diamond card"
+	},
+	{
+		"name": "Club card"
+	},
+	{
+		"name": "Smoking symbol"
+	},
+	{
+		"name": "No smoking symbol"
+	},
+	{
+		"name": "Wheelchair symbol"
+	},
+	{
+		"name": "Warning sign"
+	},
+	{
+		"name": "No entry"
+	},
+	{
+		"name": "Bicycle"
+	},
+	{
+		"name": "Mens symbol"
+	},
+	{
+		"name": "Womens symbol"
+	},
+	{
+		"name": "Baby symbol"
+	},
+	{
+		"name": "Restroom"
+	},
+	{
+		"name": "Bathtub"
+	},
+	{
+		"name": "Toilet"
+	},
+	{
+		"name": "Water closet"
+	},
+	{
+		"name": "Squared cool"
+	},
+	{
+		"name": "Squared up!"
+	},
+	{
+		"name": "Squared vs"
+	},
+	{
+		"name": "Squared katakana koko"
+	},
+	{
+		"name": "Squared katakana sa"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Squared ideograph"
+	},
+	{
+		"name": "Circled ideograph secret"
+	},
+	{
+		"name": "Circled ideograph congratulations"
+	},
+	{
+		"name": "Circled ideograph advantage"
+	},
+	{
+		"name": "Multiplication"
+	},
+	{
+		"name": "Diamond with dot inside"
+	},
+	{
+		"name": "Electric light bulb"
+	},
+	{
+		"name": "Anger symbol"
+	},
+	{
+		"name": "Bomb"
+	},
+	{
+		"name": "Sleeping symbol"
+	},
+	{
+		"name": "Splashing sweat symbol"
+	},
+	{
+		"name": "Droplet"
+	},
+	{
+		"name": "Dash symbol"
+	},
+	{
+		"name": "Flexed biceps"
+	},
+	{
+		"name": "Sparkles"
+	},
+	{
+		"name": "Eight pointed black star"
+	},
+	{
+		"name": "Eight spoked asterisk"
+	},
+	{
+		"name": "Medium white circle"
+	},
+	{
+		"name": "Medium black circle"
+	},
+	{
+		"name": "Large red circle"
+	},
+	{
+		"name": "Large blue circle"
+	},
+	{
+		"name": "Black square button"
+	},
+	{
+		"name": "White square button"
+	},
+	{
+		"name": "White medium star"
+	},
+	{
+		"name": "White large square"
+	},
+	{
+		"name": "Black large square"
+	},
+	{
+		"name": "White small square"
+	},
+	{
+		"name": "Black small square"
+	},
+	{
+		"name": "White medium small square"
+	},
+	{
+		"name": "Black medium small square"
+	},
+	{
+		"name": "White medium square"
+	},
+	{
+		"name": "Black medium square"
+	},
+	{
+		"name": "Large orange diamond"
+	},
+	{
+		"name": "Large blue diamond"
+	},
+	{
+		"name": "Small orange diamond"
+	},
+	{
+		"name": "Small blue diamond"
+	},
+	{
+		"name": "Left-pointing magnifying glass"
+	},
+	{
+		"name": "Right-pointing magnifying glass"
+	},
+	{
+		"name": "Lock"
+	},
+	{
+		"name": "Open lock"
+	},
+	{
+		"name": "Lock with ink pen"
+	},
+	{
+		"name": "Closed lock with key"
+	},
+	{
+		"name": "Key"
+	},
+	{
+		"name": "Bell"
+	},
+	{
+		"name": "Praying hands"
+	},
+	{
+		"name": "Raised hand"
+	},
+	{
+		"name": "Raised hands"
+	},
+	{
+		"name": "Raised fist"
+	},
+	{
+		"name": "Victory hand"
+	},
+	{
+		"name": "Fisted hand"
+	},
+	{
+		"name": "Thumbs up"
+	},
+	{
+		"name": "Pointing up"
+	},
+	{
+		"name": "Pointing up"
+	},
+	{
+		"name": "Pointing down"
+	},
+	{
+		"name": "Pointing left"
+	},
+	{
+		"name": "Pointing right"
+	},
+	{
+		"name": "Waving hand"
+	},
+	{
+		"name": "Clapping hands"
+	},
+	{
+		"name": "Ok hand"
+	},
+	{
+		"name": "Thumbs down"
+	},
+	{
+		"name": "Open hands"
+	}
+]
