@@ -1,44 +1,15 @@
 {
-"data": [
-{"time":" Mon Mar 07 00:00:00",
-"users": [
-]},{"time":" Tue Mar 08 00:00:00",
-"users": [
-]},{"time":" Wed Mar 09 00:00:00",
-"users": [
-]},{"time":" Thu Mar 10 00:00:00",
-"users": [
-]},{"time":" Fri Mar 11 00:00:00",
-"users": [
-]},{"time":" Fri Mar 12 00:00:00",
-"users": [
-]},{"time":" Sun Mar 13 00:00:00",
-"users": [
-]},{"time":" Mon Mar 14 00:00:00",
-"users": [
-]},{"time":" Tue Mar 15 00:00:00",
-"users": [
-]},{"time":" Wed Mar 16 00:00:00",
-"users": [
-]},{"time":" Thu Mar 17 00:00:00",
-"users": [
-{
-"name": "test"}
- ]},{"time":" Fri Mar 18 00:00:00",
-"users": [
-{
-"name": "enivebdio1988"}
- ]},{"time":" Sat Mar 19 00:00:00",
-"users": [
-]},{"time":" Sun Mar 20 00:00:00",
-"users": [
-{
-"name": "enivebdio1988"}
- ]},{"time":" Mon Mar 21 00:00:00",
-"users": [
-]},{"time":" Tue Mar 22 00:00:00",
-"users": [
-]
+"data": [{"name": "test", "children": [
+{"name": "kappa", "time": " Thu Mar 17 00:00:00"}
+]},
+{"name": "enivebdio1988", "children": [
+{"name": "kappa", "time": " Fri Mar 18 00:00:00"},
 
-}]
+{"name": "kreygasm", "time": " Fri Mar 18 00:00:00"}
+]},
+{"name": "enivebdio1988", "children": [
+{"name": "kappa", "time": " Sun Mar 20 00:00:00"}
+]}
+
+]
 }
