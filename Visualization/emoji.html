@@ -177,10 +177,17 @@ body {
 <script src="d3.v3.min.js"></script>
 <script>
 
+//USER SETTINGS FOR CHANGING DATASET
+
+var site = "fb";//"twitch"; //"fb";
+var community = "hh"; //"syndicate"; //"hh";
+
+//REST OF CODE
+
 var totals = {};
 var user_totals = {};
 
-var times = new Array();
+var times = {name: "all-times", times: {}};
 var user_times = {};
 
 var margin = 15,
@@ -207,10 +214,13 @@ var svg = d3.select("#visualization").append("svg")
 	.classed("svg-content-responsive", true);
 
 var time_svg = d3.select(".vis-row-bottom .container").append("svg")
-	.attr("width", 600)
+	.attr("width", 800)
 	.attr("height", 450)
 	.append("g")
 		.attr("transform", "translate(50,0)");
+	
+//TODO pick highest freq emoji?
+	var temp_selected = "smile";
 	
 var time_format = d3.time.format(" %a %b %d %H:%M:%S");
 var time_x = d3.time.scale().range([0, 500]);
@@ -218,11 +228,11 @@ var time_y = d3.scale.linear().range([300, 0]);
 var time_x_axis = d3.svg.axis().scale(time_x).orient("bottom");
 var time_y_axis = d3.svg.axis().scale(time_y).orient("left");
 var time_line = d3.svg.line()
-	.x(function (d) { return time_x(d.time); })
-	.y(function (d) { return time_y(d.freq); });
+	.x(function (d) { return time_x(d.value.time); })
+	.y(function (d) { console.log(d.value.emoji[temp_selected]); return time_y((d.value.emoji[temp_selected] != undefined) ? d.value.emoji[temp_selected].freq : 0); });
 
 	
-d3.json("fb_emoji_list.json", function(error, root) {
+d3.json(site + "_emoji_list.json", function(error, root) {
 	if (error) throw error;
 
 	var pattern = svg.selectAll("defs").data(root).enter()
@@ -237,34 +247,64 @@ d3.json("fb_emoji_list.json", function(error, root) {
 		.attr("height", 1)
 		.attr("fill", "white");
 	pattern.append("svg:image")
-		.attr("xlink:xlink:href", function(d) { return d.children ? "" : "fb_emojis/" + d.name + ".png"; })
+		.attr("xlink:xlink:href", function(d) { return d.children ? "" : site + "_emojis/" + d.name + ".png"; })
 		.attr("height", 1)
 		.attr("width", 1)
 		.attr("preserveAspectRatio", "xMidYMid meet")
 		.style("image-rendering", "pixelated");
 });
 
-d3.json("json_time_input/syndicate.json", function(error, root) {
+d3.json(site + "_json_time_input/" + community + ".json", function(error, root) {
 	if (error) throw error;
 	
 	for (var i = 0; i < root.data.length; i++)
 	{
-		var timeslice = root.data[i];
-		var timestamp = time_format.parse(timeslice.time);
+		var child = root.data[i];
 		
-		times.push({"time" : timestamp, "freq" : timeslice.users.length});
-		
-		/*for (var user_ind in timeslice.users)
+		if (child.children == undefined)
 		{
-			var user = timeslice.users[user_ind];
-			
-		}*/
+			var timestamp = time_format.parse(child.time);
+			if (times.times[timestamp] == undefined)
+				times.times[timestamp] = { "time": timestamp, "emoji": {}}
+				
+			if (times.times[timestamp].emoji[child.name] == undefined)
+				times.times[timestamp].emoji[child.name] = {"name": child.name, "freq": 0}
+				
+			times.times[timestamp].emoji[child.name].freq += 1;
+		}
+		else
+		{
+			if (user_times[child.name] == undefined)
+				user_times[child.name] = {"name": child.name, "times": {}}
+		
+			for (var emoji_ind in child.children)
+			{
+				var emoji = child.children[emoji_ind];
+				
+				var timestamp = time_format.parse(emoji.time);
+				if (times.times[timestamp] == undefined)
+					times.times[timestamp] = { time: timestamp, emoji: {}}
+					
+				if (times.times[timestamp].emoji[emoji.name] == undefined)
+					times.times[timestamp].emoji[emoji.name] = {"name": emoji.name, "freq": 0}
+					
+				times.times[timestamp].emoji[emoji.name].freq += 1;
+				
+				if (user_times[child.name].times[timestamp] == undefined)
+					user_times[child.name].times[timestamp] = { "time": timestamp, "emoji": {}}
+					
+				if (user_times[child.name].times[timestamp].emoji[emoji.name] == undefined)
+					user_times[child.name].times[timestamp].emoji[emoji.name] = {"name": emoji.name, "freq": 0}
+					
+				user_times[child.name].times[timestamp].emoji[emoji.name].freq += 1;
+			}
+		}
 	}
 	
 	update_time_chart(times);
 });
 
-d3.json("fb_json_input/hh_nousers.json", function(error, root) {
+d3.json(site + "_json_input/" + community + ".json", function(error, root) {
     if (error) throw error;
 
     for (var i = 0; i < root.children.length; i++)
@@ -325,11 +365,12 @@ d3.json("fb_json_input/hh_nousers.json", function(error, root) {
   zoomTo([root.x, root.y, root.r * 2 + margin]);
 
   update_table(focus);
-  update_time_chart(times);
+  update_time_chart(focus);
 
   function zoom(d) {
     var focus0 = focus; focus = d;
 	update_table(focus);
+	update_time_chart(focus);
 
     var transition = d3.transition()
         .duration(750)
@@ -354,7 +395,7 @@ d3.json("fb_json_input/hh_nousers.json", function(error, root) {
 
 var total_table_body = d3.select("#total-table tbody");
 var table_extract_row_data = function(d) {
-	return ["fb_emojis/" + d.name + ".png", d.name, d.freq];
+	return [site + "_emojis/" + d.name + ".png", d.name, d.freq];
 };
 
 function update_table(focus)
@@ -397,8 +438,16 @@ function update_table(focus)
 
 function update_time_chart(focus)
 {
-	time_x.domain(d3.extent(focus, function(d) { return d.time; }));
-	time_y.domain(d3.extent(focus, function(d) { return d.freq; }));
+	var focus_data_dict = user_times[focus.name];
+	if (focus_data_dict == undefined)
+		focus_data_dict = times;
+
+	var focus_data = d3.entries(focus_data_dict.times);
+		
+	time_x.domain(d3.extent(focus_data, function(d) { return d.value.time; }));
+	time_y.domain(d3.extent(focus_data, function(d) { return (d.value.emoji[temp_selected] != undefined) ? d.value.emoji[temp_selected].freq : 0; }));
+	
+	time_svg.selectAll("*").remove();
 	
 	time_svg.append("g")
 		.attr("class", "vis-time-axis vis-time-axis-x")
@@ -411,7 +460,7 @@ function update_time_chart(focus)
 		.call(time_y_axis);
 		
 	time_svg.append("path")
-		.datum(focus)
+		.datum(focus_data)
 		.attr("class", "line")
 		.attr("transform", "translate(" + 10 + "," + 20 + ")")
 		.attr("d", time_line);
