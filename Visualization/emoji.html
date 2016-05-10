@@ -222,13 +222,13 @@ var time_line = d3.svg.line()
 	.y(function (d) { return time_y(d.freq); });
 
 	
-d3.json("emoji_list.json", function(error, root) {
+d3.json("fb_emoji_list.json", function(error, root) {
 	if (error) throw error;
 
 	var pattern = svg.selectAll("defs").data(root).enter()
 	.append("defs")
 		.append("pattern")
-			.attr("id", function(d) { return "id-img-" + d.name; })
+			.attr("id", function(d) { return "id-img-" + d.name.replace(/\s+/g, '-'); }) //replace spaces in name with dashes
 			.attr("width", 1)
 			.attr("height", 1)
 			.attr("patternContentUnits", "objectBoundingBox");
@@ -237,7 +237,7 @@ d3.json("emoji_list.json", function(error, root) {
 		.attr("height", 1)
 		.attr("fill", "white");
 	pattern.append("svg:image")
-		.attr("xlink:xlink:href", function(d) { return d.children ? "" : "twitch_emojis/" + d.name + ".png"; })
+		.attr("xlink:xlink:href", function(d) { return d.children ? "" : "fb_emojis/" + d.name + ".png"; })
 		.attr("height", 1)
 		.attr("width", 1)
 		.attr("preserveAspectRatio", "xMidYMid meet")
@@ -264,26 +264,34 @@ d3.json("json_time_input/syndicate.json", function(error, root) {
 	update_time_chart(times);
 });
 
-d3.json("json_input/syndicate.json", function(error, root) {
-  if (error) throw error;
+d3.json("fb_json_input/hh_nousers.json", function(error, root) {
+    if (error) throw error;
 
-  for (var i = 0; i < root.children.length; i++)
+    for (var i = 0; i < root.children.length; i++)
 	{
-		var user = root.children[i];
-		var cur_user_total = {};
+        var child = root.children[i];
+    
+        if (child.children == undefined)
+        {
+            totals[child.name] = {"name": child.name, "freq": child.size};
+        }
+        else
+        {
+            var cur_user_total = {};
 
-		for (var emoji_ind in user.children)
-		{
-			var emoji = user.children[emoji_ind];
-			cur_user_total[emoji.name] = { "name" : emoji.name, "freq" : emoji.size };
+            for (var emoji_ind in child.children)
+            {
+                var emoji = child.children[emoji_ind];
+                cur_user_total[emoji.name] = { "name" : emoji.name, "freq" : emoji.size };
 
-			if (totals[emoji.name] != undefined)
-				totals[emoji.name].freq += emoji.size;
-			else
-				totals[emoji.name] = {"name" : emoji.name, "freq" : emoji.size };
-		}
+                if (totals[emoji.name] != undefined)
+                    totals[emoji.name].freq += emoji.size;
+                else
+                    totals[emoji.name] = {"name" : emoji.name, "freq" : emoji.size };
+            }
 
-		user_totals[user.name] = cur_user_total;
+            user_totals[child.name] = cur_user_total;
+        }
 	}
 
 	//console.log(totals);
@@ -297,7 +305,7 @@ d3.json("json_input/syndicate.json", function(error, root) {
       .data(nodes)
     .enter().append("circle")
       .attr("class", function(d) { return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root"; })
-      .style("fill", function(d) { return d.children ? color(d.depth) : "url(#id-img-" + d.name + ")"; })
+      .style("fill", function(d) { return d.children ? color(d.depth) : "url(#id-img-" + d.name.replace(/\s+/g, '-') + ")"; })
       .on("click", function(d) { if (focus !== d) zoom(d), d3.event.stopPropagation(); });
 
   var text = svg.selectAll("text")
@@ -346,7 +354,7 @@ d3.json("json_input/syndicate.json", function(error, root) {
 
 var total_table_body = d3.select("#total-table tbody");
 var table_extract_row_data = function(d) {
-	return ["twitch_emojis/" + d.name + ".png", d.name, d.freq];
+	return ["fb_emojis/" + d.name + ".png", d.name, d.freq];
 };
 
 function update_table(focus)
