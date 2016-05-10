@@ -138,9 +138,21 @@ body {
 	max-height: 32px;
 }
 
-.line {
+.line-first {
   fill: none;
   stroke: steelblue;
+  stroke-width: 1.5px;
+}
+
+.line-second {
+  fill: none;
+  stroke: red;
+  stroke-width: 1.5px;
+}
+
+.line-third {
+  fill: none;
+  stroke: green;
   stroke-width: 1.5px;
 }
 
@@ -219,18 +231,26 @@ var time_svg = d3.select(".vis-row-bottom .container").append("svg")
 	.append("g")
 		.attr("transform", "translate(50,0)");
 	
-//TODO pick highest freq emoji?
-	var temp_selected = "smile";
+
+var top_three_focus_emoji = [];
 	
 var time_format = d3.time.format(" %a %b %d %H:%M:%S");
 var time_x = d3.time.scale().range([0, 500]);
 var time_y = d3.scale.linear().range([300, 0]);
 var time_x_axis = d3.svg.axis().scale(time_x).orient("bottom");
 var time_y_axis = d3.svg.axis().scale(time_y).orient("left");
-var time_line = d3.svg.line()
+var time_line_first = d3.svg.line()
 	.x(function (d) { return time_x(d.value.time); })
-	.y(function (d) { console.log(d.value.emoji[temp_selected]); return time_y((d.value.emoji[temp_selected] != undefined) ? d.value.emoji[temp_selected].freq : 0); });
+	.y(function (d) { return time_y((d.value.emoji[top_three_focus_emoji[0]] != undefined) ? d.value.emoji[top_three_focus_emoji[0]].freq : 0); });
 
+var time_line_second = d3.svg.line()
+	.x(function (d) { return time_x(d.value.time); })
+	.y(function (d) { return time_y((d.value.emoji[top_three_focus_emoji[1]] != undefined) ? d.value.emoji[top_three_focus_emoji[1]].freq : 0); });
+	
+var time_line_third = d3.svg.line()
+	.x(function (d) { return time_x(d.value.time); })
+	.y(function (d) { return time_y((d.value.emoji[top_three_focus_emoji[2]] != undefined) ? d.value.emoji[top_three_focus_emoji[2]].freq : 0); });
+	
 	
 d3.json(site + "_emoji_list.json", function(error, root) {
 	if (error) throw error;
@@ -434,6 +454,21 @@ function update_table(focus)
 		.classed("pure-table-odd", false)
 		.filter(function (d, i) { return i % 2 == 0; })
 		.classed("pure-table-odd", true);
+		
+	top_three_focus_emoji[0] = "";
+	top_three_focus_emoji[1] = "";
+	top_three_focus_emoji[2] = "";
+		
+	if (rows.size() > 0)
+		top_three_focus_emoji[0] = d3.select("#total-table tbody tr:nth-child(1) td:nth-child(2)").html();	
+	
+	if (rows.size() > 1)
+		top_three_focus_emoji[1] = d3.select("#total-table tbody tr:nth-child(2) td:nth-child(2)").html();
+	
+	if (rows.size() > 2)
+		top_three_focus_emoji[2] = d3.select("#total-table tbody tr:nth-child(3) td:nth-child(2)").html();
+	
+	//console.log(top_three_focus_emoji);
 }
 
 function update_time_chart(focus)
@@ -442,11 +477,17 @@ function update_time_chart(focus)
 	if (focus_data_dict == undefined)
 		focus_data_dict = times;
 
-	var focus_data = d3.entries(focus_data_dict.times);
+	var focus_data = d3.entries(focus_data_dict.times).sort(function(a, b) { return a.value.time - b.value.time; });
+	
 		
 	time_x.domain(d3.extent(focus_data, function(d) { return d.value.time; }));
-	time_y.domain(d3.extent(focus_data, function(d) { return (d.value.emoji[temp_selected] != undefined) ? d.value.emoji[temp_selected].freq : 0; }));
+	time_y.domain(d3.extent(focus_data, function(d) {
+		var top_freqs = [d.value.emoji[top_three_focus_emoji[0]], d.value.emoji[top_three_focus_emoji[1]], d.value.emoji[top_three_focus_emoji[2]]];
+		return d3.max(top_freqs, function(d2) { return d2 != undefined ? d2.freq : 0; });
+	}));
 	
+	time_y.domain([0, time_y.domain()[1]]);
+		
 	time_svg.selectAll("*").remove();
 	
 	time_svg.append("g")
@@ -461,9 +502,21 @@ function update_time_chart(focus)
 		
 	time_svg.append("path")
 		.datum(focus_data)
-		.attr("class", "line")
+		.attr("class", "line-first")
 		.attr("transform", "translate(" + 10 + "," + 20 + ")")
-		.attr("d", time_line);
+		.attr("d", time_line_first);
+		
+	time_svg.append("path")
+		.datum(focus_data)
+		.attr("class", "line-second")
+		.attr("transform", "translate(" + 10 + "," + 20 + ")")
+		.attr("d", time_line_second);
+		
+	time_svg.append("path")
+		.datum(focus_data)
+		.attr("class", "line-third")
+		.attr("transform", "translate(" + 10 + "," + 20 + ")")
+		.attr("d", time_line_third);
 }
 
 //d3.select(self.frameElement).style("height", diameter + "px");
